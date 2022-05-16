@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">impulse</string>
+    <string name="str_save_your_time">Save your time</string>
+    <string name="str_advice_doctors">Advice of doctors</string>
+    <string name="str_active_support">Active support</string>
 </resources>
