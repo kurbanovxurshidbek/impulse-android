@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="main_red">#F83648</color>
+    <color name="status_bar_color">#EC5261</color>
     <color name="intro_text_color">#2B3A4B</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
