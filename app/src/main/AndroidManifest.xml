@@ -9,12 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Impulse">
         <activity
-            android:name=".activity.IntroPageActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:theme="@style/Theme.App.Starting"
-            android:name=".activity.MainActivity"
-            android:exported="true">
+            android:name=".activity.IntroPageActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

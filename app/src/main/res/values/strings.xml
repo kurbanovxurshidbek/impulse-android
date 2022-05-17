@@ -3,4 +3,8 @@
     <string name="str_save_your_time">Save your time</string>
     <string name="str_advice_doctors">Advice of doctors</string>
     <string name="str_active_support">Active support</string>
+    <string name="str_skip">Skip</string>
+    <string name="str_description">Description here</string>
+    <string name="str_continue">Continue</string>
+    <string name="str_get_started">Get Started</string>
 </resources>
