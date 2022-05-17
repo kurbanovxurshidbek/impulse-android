@@ -3,20 +3,19 @@ package com.impulse.impulse.activity
 import android.os.Bundle
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.isVisible
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.IntroPageItemAdapter
 import com.impulse.impulse.databinding.ActivityIntroPageBinding
+import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.IntroPageItem
-import java.util.ArrayList
 
 class IntroPageActivity : BaseActivity() {
     private lateinit var binding: ActivityIntroPageBinding
+    private var isFirstTime = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        installSplash()
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Impulse)
         binding = ActivityIntroPageBinding.inflate(layoutInflater)
@@ -35,8 +34,18 @@ class IntroPageActivity : BaseActivity() {
             tvSkip.setOnClickListener {
                 viewPager.currentItem = getItems().size - 1
             }
+            btnGetStarted.setOnClickListener {
+                saveLoggedState()
+                callMainActivity()
+                finish()
+            }
         }
         applyPageStateChanges()
+    }
+
+    private fun saveLoggedState() {
+        isFirstTime = false
+        PrefsManager.getInstance(context)!!.setFirstTime("isFirstTime", isFirstTime)
     }
 
     private fun applyPageStateChanges() {
@@ -57,6 +66,17 @@ class IntroPageActivity : BaseActivity() {
 
                 }
             })
+        }
+    }
+
+    private fun installSplash() {
+        Thread.sleep(2000)
+        installSplashScreen().setOnExitAnimationListener {
+            val isFirstTime = PrefsManager.getInstance(context)!!.isFirstTime("isFirstTime")
+            if (!isFirstTime) {
+                callMainActivity()
+                finish()
+            }
         }
     }
 
