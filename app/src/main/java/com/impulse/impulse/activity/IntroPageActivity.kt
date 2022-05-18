@@ -2,7 +2,6 @@ package com.impulse.impulse.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewpager2.widget.ViewPager2
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.IntroPageItemAdapter
@@ -10,14 +9,15 @@ import com.impulse.impulse.databinding.ActivityIntroPageBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.IntroPageItem
 
+/*
+* This activity only will be showed first time users
+* */
 class IntroPageActivity : BaseActivity() {
     private lateinit var binding: ActivityIntroPageBinding
     private var isFirstTime = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplash()
         super.onCreate(savedInstanceState)
-        setTheme(R.style.Theme_Impulse)
         binding = ActivityIntroPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -36,7 +36,7 @@ class IntroPageActivity : BaseActivity() {
             }
             btnGetStarted.setOnClickListener {
                 saveLoggedState()
-                callMainActivity()
+                callMainActivity(this@IntroPageActivity)
                 finish()
             }
         }
@@ -69,17 +69,6 @@ class IntroPageActivity : BaseActivity() {
         }
     }
 
-    private fun installSplash() {
-        Thread.sleep(2000)
-        installSplashScreen().setOnExitAnimationListener {
-            val isFirstTime = PrefsManager.getInstance(context)!!.isFirstTime("isFirstTime")
-            if (!isFirstTime) {
-                callMainActivity()
-                finish()
-            }
-        }
-    }
-
     private fun getItems(): ArrayList<IntroPageItem> {
         val items = ArrayList<IntroPageItem>()
         items.add(
@@ -103,7 +92,8 @@ class IntroPageActivity : BaseActivity() {
                 getString(R.string.str_description)
             )
         )
-
         return items
     }
 }
+
+

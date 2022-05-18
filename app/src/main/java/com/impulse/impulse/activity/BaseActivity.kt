@@ -13,8 +13,13 @@ open class BaseActivity : AppCompatActivity() {
         context = this
     }
 
-    fun callMainActivity() {
+    fun callMainActivity(context: Context) {
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun callIntroPage(context: Context) {
+        val intent = Intent(this, IntroPageActivity::class.java)
         startActivity(intent)
     }
 }
