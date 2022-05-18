@@ -1,7 +1,6 @@
 package com.impulse.impulse.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.WindowManager
@@ -42,10 +41,10 @@ class SplashActivity : BaseActivity() {
 
             override fun onFinish() {
                 if (PrefsManager.getInstance(context)!!.isFirstTime("isFirstTime")) {
-                    callIntroPage(this@SplashActivity)
+                    callIntroPageActivity(this@SplashActivity)
                     finish()
                 } else {
-                    callMainActivity(this@SplashActivity)
+                    callSignInActivity(this@SplashActivity)
                     finish()
                 }
             }

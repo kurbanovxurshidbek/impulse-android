@@ -20,6 +20,7 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.IntroPageActivity" />
+        <activity android:name=".activity.SignInActivity" />
     </application>
 
 </manifest>
