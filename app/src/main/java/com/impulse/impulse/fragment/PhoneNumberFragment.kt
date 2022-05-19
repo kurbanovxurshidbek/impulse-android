@@ -2,7 +2,10 @@ package com.impulse.impulse.fragment
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.SpannableString
+import android.text.Spanned
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.impulse.impulse.R
 import com.impulse.impulse.databinding.FragmentPhoneNumberBinding
+import com.impulse.impulse.manager.PrefsManager
 
 class PhoneNumberFragment : BaseFragment() {
     private var _binding: FragmentPhoneNumberBinding? = null
@@ -35,6 +39,7 @@ class PhoneNumberFragment : BaseFragment() {
 
     private fun initViews() {
         changeLLColor()
+        changeTvColor()
 
         binding.apply {
             etCountryCode.setText("+${ccp.selectedCountryCode}", TextView.BufferType.EDITABLE)
@@ -51,10 +56,36 @@ class PhoneNumberFragment : BaseFragment() {
 
             btnContinue.setOnClickListener {
                 fullPhoneNumber = ccp.fullNumberWithPlus
+                savePhoneNumberToSharePref()
                 if (isFilledPhone()) {
                     openConfirmationPage()
                 }
             }
+        }
+    }
+
+    private fun savePhoneNumberToSharePref() {
+        val manager = PrefsManager.getInstance(requireContext())
+        val key = "phoneNumber"
+        if (manager!!.getData(key) != null) {
+            manager.deleteData(key)
+        }
+        manager.saveData(key, fullPhoneNumber)
+    }
+
+    /*
+    *  This function changes the spanned text color in textview
+    * */
+    private fun changeTvColor() {
+        binding.apply {
+            val spannableString = SpannableString(getString(R.string.str_term_of_use))
+            spannableString.setSpan(
+                ForegroundColorSpan(resources.getColor(R.color.main_red)),
+                27,
+                39,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            tvTermsOfUse.text = spannableString
         }
     }
 

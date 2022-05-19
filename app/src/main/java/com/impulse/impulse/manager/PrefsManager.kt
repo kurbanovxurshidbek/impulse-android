@@ -42,6 +42,12 @@ class PrefsManager private constructor(context: Context) {
         return if (sharedPreferences != null) sharedPreferences.getString(key, "") else "en"
     }
 
+    fun deleteData(key: String?) {
+        val editor = sharedPreferences!!.edit()
+        editor.remove(key)
+        editor.apply()
+    }
+
     fun clearAll() {
         val editor = sharedPreferences!!.edit()
         editor.clear()

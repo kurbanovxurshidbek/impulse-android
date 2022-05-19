@@ -1,9 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".fragment.ConfirmationFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/bg_ll_text"
+        android:gravity="center"
+        android:padding="10dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_code_sent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCode1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_et_confirmation"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCode2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_et_confirmation"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCode3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_et_confirmation"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCode4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_et_confirmation"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCode5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_et_confirmation"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCode6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_et_confirmation"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvResend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/str_hasnt_get_code" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_btn_intro_page"
+            android:enabled="false"
+            android:paddingVertical="14dp"
+            android:text="@string/str_continue"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

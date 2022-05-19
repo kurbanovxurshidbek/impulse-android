@@ -9,5 +9,10 @@
     <string name="str_get_started">Get Started</string>
     <string name="str_country_region">Country/Region</string>
     <string name="str_phone_number">Phone number</string>
-    <string name="str_term_of_use">I have read and accept the Terms of Use</string>
+    <string name="str_term_of_use">I have read and accept the <b>Terms of Use</b></string>
+    <string name="str_hasnt_get_code">Has not get the code? <b>Resend</b></string>
+    <string name="str_code_sent">Code is sent to %s
+If you still didn\'t get the code, please
+make sure you\'ve filled your phone.
+number correctly</string>
 </resources>
