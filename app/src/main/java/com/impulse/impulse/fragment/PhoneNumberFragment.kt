@@ -1,6 +1,9 @@
 package com.impulse.impulse.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,15 +45,26 @@ class PhoneNumberFragment : BaseFragment() {
 
             chbTerms.setOnClickListener {
                 if (it is CheckBox) {
-                    isChecked = it.isChecked
+                    checkForTermsOfUse(it)
                 }
             }
 
             btnContinue.setOnClickListener {
                 fullPhoneNumber = ccp.fullNumberWithPlus
-                if (isFilledPhone() && isCheckedTerms(it)) {
+                if (isFilledPhone()) {
                     openConfirmationPage()
                 }
+            }
+        }
+    }
+
+    private fun checkForTermsOfUse(checkBox: CheckBox) {
+        binding.apply {
+            isChecked = checkBox.isChecked
+            if (isFilledPhone()) {
+                btnContinue.isEnabled = isChecked
+            } else {
+                btnContinue.isEnabled = false
             }
         }
     }
@@ -64,18 +78,6 @@ class PhoneNumberFragment : BaseFragment() {
 
     private fun isFilledPhone(): Boolean {
         return binding.etPhoneNumber.text!!.isNotEmpty()
-    }
-
-    private fun isCheckedTerms(view: View?): Boolean {
-        return if (isChecked) {
-            requireView().isEnabled = true
-            requireView().isClickable = true
-            true
-        } else {
-            requireView().isEnabled = false
-            requireView().isClickable = false
-            false
-        }
     }
 
     /*
@@ -98,6 +100,22 @@ class PhoneNumberFragment : BaseFragment() {
                     llPhoneNumber.setBackgroundColor(resources.getColor(R.color.ll_bg_color))
                 }
             }
+            etPhoneNumber.addTextChangedListener(object : TextWatcher {
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if (chbTerms.isChecked) {
+                        btnContinue.isEnabled = chbTerms.isChecked
+                    }
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    if (!isFilledPhone()) {
+                        btnContinue.isEnabled = isFilledPhone()
+                    }
+                }
+            })
         }
     }
 
