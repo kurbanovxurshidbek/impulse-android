@@ -36,7 +36,7 @@ class IntroPageActivity : BaseActivity() {
             }
             btnGetStarted.setOnClickListener {
                 saveLoggedState()
-                callMainActivity(this@IntroPageActivity)
+                callSignInActivity(this@IntroPageActivity)
                 finish()
             }
         }

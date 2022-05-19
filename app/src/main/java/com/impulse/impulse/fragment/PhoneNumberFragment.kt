@@ -48,7 +48,7 @@ class PhoneNumberFragment : BaseFragment() {
 
             btnContinue.setOnClickListener {
                 fullPhoneNumber = ccp.fullNumberWithPlus
-                if (isFilledPhone() || isCheckedTerms(it)) {
+                if (isFilledPhone() && isCheckedTerms(it)) {
                     openConfirmationPage()
                 }
             }
