@@ -11,8 +11,10 @@
     <string name="str_phone_number">Phone number</string>
     <string name="str_term_of_use">I have read and accept the <b>Terms of Use</b></string>
     <string name="str_hasnt_get_code">Has not get the code? <b>Resend</b></string>
-    <string name="str_code_sent">Code is sent to %s
+    <string name="str_code_sent">Code is sent to <b>%s</b>
 If you still didn\'t get the code, please
 make sure you\'ve filled your phone.
 number correctly</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
