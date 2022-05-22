@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/ic_home"
+        android:menuCategory="secondary"
+        android:title="" />
+
+    <item
+        android:id="@+id/navigation_contacts"
+        android:icon="@mipmap/ic_contacts"
+        android:menuCategory="secondary"
+        android:title="" />
+
+    <item
+        android:id="@+id/navigation_firstAid"
+        android:icon="@mipmap/ic_medical"
+        android:menuCategory="secondary"
+        android:title="" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@mipmap/ic_person"
+        android:menuCategory="secondary"
+        android:title="" />
+
+
+</menu>

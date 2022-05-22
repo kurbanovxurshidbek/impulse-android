@@ -37,6 +37,11 @@ class PhoneNumberFragment : BaseFragment() {
         return view
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initViews() {
         changeLLColor()
         changeTvColor()
@@ -104,6 +109,7 @@ class PhoneNumberFragment : BaseFragment() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.flMain, ConfirmationFragment())
+            .addToBackStack(null)
             .commit()
     }
 
@@ -149,10 +155,4 @@ class PhoneNumberFragment : BaseFragment() {
             })
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

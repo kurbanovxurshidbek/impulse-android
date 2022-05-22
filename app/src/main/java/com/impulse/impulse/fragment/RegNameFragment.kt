@@ -28,10 +28,18 @@ class RegNameFragment : BaseFragment() {
         return view
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initViews() {
         fioFocusListener()
         jshirFocusListener()
         passportFocusListener()
+        binding.btnContinue.setOnClickListener {
+            callMainActivity(requireActivity())
+        }
     }
 
     private fun jshirFocusListener() {
@@ -191,6 +199,4 @@ class RegNameFragment : BaseFragment() {
             })
         }
     }
-
-
 }

@@ -26,4 +26,6 @@ number correctly</string>
     <string name="str_passport">Passport seriya raqami</string>
     <string name="str_passport_helper">Masalan AA 1234567</string>
     <string name="str_passport_error">Iltimos passport ma\'lumotlaringizni kiriting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
