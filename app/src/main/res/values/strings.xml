@@ -3,18 +3,27 @@
     <string name="str_save_your_time">Save your time</string>
     <string name="str_advice_doctors">Advice of doctors</string>
     <string name="str_active_support">Active support</string>
-    <string name="str_skip">Skip</string>
+    <string name="str_skip">O\'tkazib yuborish</string>
+    <string name="str_next">Keyingisi</string>
     <string name="str_description">Description here</string>
-    <string name="str_continue">Continue</string>
-    <string name="str_get_started">Get Started</string>
-    <string name="str_country_region">Country/Region</string>
-    <string name="str_phone_number">Phone number</string>
+    <string name="str_continue">Davom etdirish</string>
+    <string name="str_get_started">Boshlash</string>
+    <string name="str_country_region">Mamlakat/Viloyat</string>
+    <string name="str_phone_number">Telefon raqami</string>
     <string name="str_term_of_use">I have read and accept the <b>Terms of Use</b></string>
     <string name="str_hasnt_get_code">Has not get the code? <b>Resend</b></string>
     <string name="str_code_sent">Code is sent to <b>%s</b>
 If you still didn\'t get the code, please
 make sure you\'ve filled your phone.
 number correctly</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_fio">F.I.O</string>
+    <string name="str_fio_helper">Familiya Ism Otasining ismi</string>
+    <string name="str_fio_error">Iltimos F.I.O ni to\'ldiring</string>
+    <string name="str_jshir">JSHIR</string>
+    <string name="str_jshir_helper">Jismoniy shaxs identifikatsion raqami</string>
+    <string name="str_jshir_error">Iltimos JSHIR ni to\'ldiring</string>
+    <string name="str_jshir_error_length">JSHIR uzunligi 14 raqamdan iborat bo\'lishi kerak</string>
+    <string name="str_passport">Passport seriya raqami</string>
+    <string name="str_passport_helper">Masalan AA 1234567</string>
+    <string name="str_passport_error">Iltimos passport ma\'lumotlaringizni kiriting</string>
 </resources>

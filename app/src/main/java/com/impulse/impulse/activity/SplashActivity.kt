@@ -1,6 +1,7 @@
 package com.impulse.impulse.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.WindowManager
@@ -44,7 +45,8 @@ class SplashActivity : BaseActivity() {
                     callIntroPageActivity(this@SplashActivity)
                     finish()
                 } else {
-                    callSignInActivity(this@SplashActivity)
+//                    callSignInActivity(this@SplashActivity)
+                    Intent(this@SplashActivity, SignUpActivity::class.java).also { startActivity(it) }
                     finish()
                 }
             }
