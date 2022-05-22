@@ -86,8 +86,8 @@ class PhoneNumberFragment : BaseFragment() {
             val spannableString = SpannableString(getString(R.string.str_term_of_use))
             spannableString.setSpan(
                 ForegroundColorSpan(resources.getColor(R.color.main_red)),
-                27,
-                39,
+                0,
+                21,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             tvTermsOfUse.text = spannableString

@@ -10,12 +10,10 @@
     <string name="str_get_started">Boshlash</string>
     <string name="str_country_region">Mamlakat/Viloyat</string>
     <string name="str_phone_number">Telefon raqami</string>
-    <string name="str_term_of_use">I have read and accept the <b>Terms of Use</b></string>
-    <string name="str_hasnt_get_code">Has not get the code? <b>Resend</b></string>
-    <string name="str_code_sent">Code is sent to <b>%s</b>
-If you still didn\'t get the code, please
-make sure you\'ve filled your phone.
-number correctly</string>
+    <string name="str_term_of_use"><b>Foydalanish shartlari</b> bilan tanishib chiqdim</string>
+    <string name="str_hasnt_get_code">Kodni qabul qilmadingizmi? <b>Qayta yuborish</b></string>
+    <string name="str_code_sent">Tasdiqlash kodi <b>%s</b> raqamga yuborildi.
+Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan kiriting.</string>
     <string name="str_fio">F.I.O</string>
     <string name="str_fio_helper">Familiya Ism Otasining ismi</string>
     <string name="str_fio_error">Iltimos F.I.O ni to\'ldiring</string>

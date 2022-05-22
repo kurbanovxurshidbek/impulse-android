@@ -67,8 +67,8 @@ class ConfirmationFragment : BaseFragment() {
             val spannableString = SpannableString(getString(R.string.str_hasnt_get_code))
             spannableString.setSpan(
                 ForegroundColorSpan(resources.getColor(R.color.main_red)),
-                22,
-                28,
+                27,
+                41,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             tvResend.text = spannableString
