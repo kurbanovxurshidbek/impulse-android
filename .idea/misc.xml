@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_call.xml" value="0.124" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_intro_page.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_intro_page_disabled.xml" value="0.1115" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_et_confirmation.xml" value="0.1675" />

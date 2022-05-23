@@ -45,7 +45,8 @@ class SplashActivity : BaseActivity() {
                     callIntroPageActivity(this@SplashActivity)
                     finish()
                 } else {
-                    callSignInActivity(this@SplashActivity)
+                    callMainActivity(this@SplashActivity)
+//                    callSignInActivity(this@SplashActivity)
                     finish()
                 }
             }

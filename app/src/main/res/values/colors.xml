@@ -8,6 +8,7 @@
     <!--my colors-->
     <color name="main_red">#F83648</color>
     <color name="status_bar_color">#EC5261</color>
+    <color name="navigation_false_color">#DA5360</color>
     <color name="intro_text_color">#2B3A4B</color>
     <color name="btn_gradient_start_color">#E47170</color>
     <color name="btn_gradient_end_color">#F83648</color>
