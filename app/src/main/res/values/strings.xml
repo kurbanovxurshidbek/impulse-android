@@ -26,6 +26,11 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_passport_error">Iltimos passport ma\'lumotlaringizni kiriting</string>
     <string name="str_help_needed">Tez yordam kerakmi?</string>
     <string name="str_hold_button">Shunchaki tugmani bosib turing</string>
+    <string name="str_accident">Halokatga uchradim</string>
+    <string name="str_injury">Jarohatlandim</string>
+    <string name="str_feeling_bad">O\'zimni yomon his qilyapman</string>
+    <string name="str_not_sure">Nima qilishni bilmaysizmi?</string>
+    <string name="str_pick_subject">Yordam olish uchun mavzuni tanlang</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
