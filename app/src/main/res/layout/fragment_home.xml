@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/light_grey"
     tools:context=".fragment.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/light_grey"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
@@ -39,7 +39,6 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
                 android:text="@string/str_help_needed"
                 android:textColor="@color/black"
                 android:textSize="35sp" />
@@ -49,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/str_hold_button"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -90,7 +90,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="300dp"
-                android:fontFamily="sans-serif-condensed-medium"
                 android:text="@string/str_not_sure"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -98,7 +97,8 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_pick_subject" />
+                android:text="@string/str_pick_subject"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -108,6 +108,7 @@
             android:gravity="bottom">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginBottom="10dp"
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

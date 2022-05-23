@@ -1,10 +1,6 @@
 package com.impulse.impulse.activity
 
 import android.os.Bundle
-import android.view.View
-import android.widget.CheckBox
-import android.widget.TextView
-import android.widget.Toast
 import com.impulse.impulse.R
 import com.impulse.impulse.databinding.ActivitySignInBinding
 import com.impulse.impulse.fragment.PhoneNumberFragment
@@ -28,7 +24,7 @@ class SignInActivity : BaseActivity() {
         val phoneNumberFragment = PhoneNumberFragment()
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.flMain, phoneNumberFragment)
+            .replace(R.id.flSignIn, phoneNumberFragment)
             .commit()
     }
 }

@@ -16,6 +16,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="ll_bg_color">#cbcbcb</color>
+    <color name="light_grey">#E2E1E1</color>
     <color name="main_10">#10F83648</color>
     <color name="helper_text_color">#9F9D9D</color>
 </resources>

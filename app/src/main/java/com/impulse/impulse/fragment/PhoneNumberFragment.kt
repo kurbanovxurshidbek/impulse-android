@@ -6,13 +6,11 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
-import android.widget.Toast
 import com.impulse.impulse.R
 import com.impulse.impulse.databinding.FragmentPhoneNumberBinding
 import com.impulse.impulse.manager.PrefsManager
@@ -108,7 +106,7 @@ class PhoneNumberFragment : BaseFragment() {
     private fun openConfirmationPage() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.flMain, ConfirmationFragment())
+            .replace(R.id.flSignIn, ConfirmationFragment())
             .addToBackStack(null)
             .commit()
     }

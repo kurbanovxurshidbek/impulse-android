@@ -1,12 +1,14 @@
 package com.impulse.impulse.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
+import com.impulse.impulse.adapter.HomeItemAdapter
 import com.impulse.impulse.databinding.FragmentHomeBinding
+import com.impulse.impulse.model.HomeItem
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -31,6 +33,18 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        binding.apply {
+            recyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            recyclerView.adapter = HomeItemAdapter(requireContext(), getAllItems())
+        }
+    }
 
+    private fun getAllItems(): ArrayList<HomeItem> {
+        val items = ArrayList<HomeItem>()
+        items.add(HomeItem(getString(R.string.str_accident), R.drawable.ic_accident))
+        items.add(HomeItem(getString(R.string.str_injury), R.mipmap.ic_injury))
+        items.add(HomeItem(getString(R.string.str_feeling_bad), R.mipmap.ic_feeling_bad))
+        return items
     }
 }

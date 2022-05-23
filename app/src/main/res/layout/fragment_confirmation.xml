@@ -129,7 +129,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_btn_intro_page"
             android:enabled="false"
-            android:paddingVertical="14dp"
+            android:paddingVertical="12dp"
             android:text="@string/str_continue"
             android:textAllCaps="false"
             android:textColor="@color/white"
