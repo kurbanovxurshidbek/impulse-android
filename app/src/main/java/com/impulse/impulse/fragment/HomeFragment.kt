@@ -37,6 +37,11 @@ class HomeFragment : BaseFragment() {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             recyclerView.adapter = HomeItemAdapter(requireContext(), getAllItems())
+
+            btnCall.setOnLongClickListener {
+                btnCall.playAnimation()
+                true
+            }
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.impulse.impulse.R
 import com.impulse.impulse.model.IntroPageItem
 
@@ -22,7 +23,7 @@ class IntroPageItemAdapter(var context: Context, private var items: ArrayList<In
         val item = items[position]
 
         if (holder is MyViewHolder) {
-            holder.ivPhoto.setImageResource(item.img)
+            holder.ivPhoto.setAnimation(item.img)
             holder.tvTitle.text = item.title
             holder.tvDescription.text = item.description
         }
@@ -34,7 +35,7 @@ class IntroPageItemAdapter(var context: Context, private var items: ArrayList<In
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val ivPhoto: ImageView = view.findViewById(R.id.ivPhoto)
+        val ivPhoto: LottieAnimationView = view.findViewById(R.id.ivPhoto)
         val tvTitle: TextView = view.findViewById(R.id.tvTitle)
         val tvDescription: TextView = view.findViewById(R.id.tvDescription)
     }

@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">impulse</string>
-    <string name="str_save_your_time">Save your time</string>
-    <string name="str_advice_doctors">Advice of doctors</string>
-    <string name="str_active_support">Active support</string>
+    <string name="str_save_your_time">Vaqtingizni tejang</string>
+    <string name="str_advice_doctors">Malakali shifokorlar maslahati</string>
+    <string name="str_active_support">Qo\'llab quvvatlash</string>
     <string name="str_skip">O\'tkazib yuborish</string>
     <string name="str_next">Keyingisi</string>
-    <string name="str_description">Description here</string>
+    <string name="str_description_time">Tezkorlik vaqtingizni tejaydi. <big>Impulse</big>ni ishlating hamda qo\'shimcha vaqtga egalik qiling</string>
+    <string name="str_description_doctors"><b>Impulse</b> bilan eng malakali shifokorlar maslahatlariga quloq soling</string>
+    <string name="str_description_support"><b>Impulse</b> sizni mamnunlik bilan qarshi oladi. Doimiy yordamini ayamaydi</string>
     <string name="str_continue">Davom etdirish</string>
     <string name="str_get_started">Boshlash</string>
     <string name="str_country_region">Mamlakat/Viloyat</string>

@@ -13,4 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/status_bar_color</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="corner">
+        <item name="cornerRadius">50dp</item>
+    </style>
 </resources>

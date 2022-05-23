@@ -15,7 +15,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize">
 
 
         </androidx.appcompat.widget.Toolbar>
@@ -59,26 +59,16 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/btnCall"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:background="@drawable/bg_btn_call" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_autoPlay="false"
+                app:lottie_fileName="impulse.json"
+                app:lottie_loop="true" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_location"
-                app:tint="@color/white" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,10 +98,10 @@
             android:gravity="bottom">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginBottom="10dp"
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp" />
         </LinearLayout>
 
     </FrameLayout>

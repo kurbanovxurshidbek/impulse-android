@@ -1,6 +1,8 @@
 package com.impulse.impulse.activity
 
 import android.os.Bundle
+import android.text.Html
+import android.text.Spanned
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.impulse.impulse.R
@@ -71,25 +73,26 @@ class IntroPageActivity : BaseActivity() {
 
     private fun getItems(): ArrayList<IntroPageItem> {
         val items = ArrayList<IntroPageItem>()
+
         items.add(
             IntroPageItem(
-                R.drawable.im_time_management,
+                "save_time.json",
                 getString(R.string.str_save_your_time),
-                getString(R.string.str_description)
+                getString(R.string.str_description_time)
             )
         )
         items.add(
             IntroPageItem(
-                R.drawable.im_medic,
+                "advice_of_doctors.json",
                 getString(R.string.str_advice_doctors),
-                getString(R.string.str_description)
+                getString(R.string.str_description_doctors)
             )
         )
         items.add(
             IntroPageItem(
-                R.drawable.im_ac_support,
+                "active_support.json",
                 getString(R.string.str_active_support),
-                getString(R.string.str_description)
+                getString(R.string.str_description_support)
             )
         )
         return items
