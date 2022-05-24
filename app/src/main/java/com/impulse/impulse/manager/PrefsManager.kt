@@ -32,6 +32,17 @@ class PrefsManager private constructor(context: Context) {
         return sharedPreferences?.getBoolean(key, true) ?: false
     }
 
+    // check logged in or not
+    fun setLoggedIn(key: String?, value: Boolean?) {
+        val prefsEditor = sharedPreferences!!.edit()
+        prefsEditor.putBoolean(key, value!!)
+        prefsEditor.apply()
+    }
+
+    fun isLoggedIn(key: String?): Boolean {
+        return sharedPreferences?.getBoolean(key, true) ?: false
+    }
+
     fun saveData(key: String?, value: String?) {
         val prefsEditor = sharedPreferences!!.edit()
         prefsEditor.putString(key, value)

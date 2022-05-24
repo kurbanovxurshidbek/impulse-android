@@ -15,6 +15,6 @@
     </style>
 
     <style name="corner">
-        <item name="cornerRadius">50dp</item>
+        <item name="cornerSize">50%</item>
     </style>
 </resources>

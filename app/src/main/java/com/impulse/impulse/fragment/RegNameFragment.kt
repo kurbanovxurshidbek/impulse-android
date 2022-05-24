@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.impulse.impulse.R
 import com.impulse.impulse.databinding.FragmentRegNameBinding
+import com.impulse.impulse.manager.PrefsManager
 
 class RegNameFragment : BaseFragment() {
     private var _binding: FragmentRegNameBinding? = null
@@ -143,6 +144,7 @@ class RegNameFragment : BaseFragment() {
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
+                    PrefsManager.getInstance(context!!)!!.saveData("userName", etFio.text!!.split(' ')[0])
                 }
             })
         }

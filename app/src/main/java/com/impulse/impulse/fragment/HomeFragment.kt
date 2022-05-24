@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
 import com.impulse.impulse.databinding.FragmentHomeBinding
+import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
 
 class HomeFragment : BaseFragment() {
@@ -42,6 +43,8 @@ class HomeFragment : BaseFragment() {
                 btnCall.playAnimation()
                 true
             }
+
+            tvName.text = getString(R.string.str_hello_name, PrefsManager.getInstance(requireContext())!!.getData("userName"))
         }
     }
 

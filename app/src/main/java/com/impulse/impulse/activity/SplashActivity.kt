@@ -41,12 +41,15 @@ class SplashActivity : BaseActivity() {
             }
 
             override fun onFinish() {
-                if (PrefsManager.getInstance(context)!!.isFirstTime("isFirstTime")) {
+                val manager = PrefsManager.getInstance(context)!!
+                if (manager.isFirstTime("isFirstTime")) {
                     callIntroPageActivity(this@SplashActivity)
                     finish()
+                } else if (manager.isLoggedIn("isLoggedIn")) {
+                    callMainActivity(context)
+                    finish()
                 } else {
-                    callMainActivity(this@SplashActivity)
-//                    callSignInActivity(this@SplashActivity)
+                    callSignInActivity(this@SplashActivity)
                     finish()
                 }
             }
