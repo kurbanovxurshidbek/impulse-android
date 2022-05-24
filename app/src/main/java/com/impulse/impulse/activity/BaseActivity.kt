@@ -27,4 +27,9 @@ open class BaseActivity : AppCompatActivity() {
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
     }
+
+    fun callSignUpActivity(context: Context) {
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
+    }
 }

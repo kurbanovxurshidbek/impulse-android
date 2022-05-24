@@ -47,7 +47,7 @@ class ConfirmationFragment : BaseFragment() {
         binding.apply {
             btnContinue.setOnClickListener {
                 // checkCode()
-                PrefsManager.getInstance(requireContext())!!.setLoggedIn("isLoggedIn", true)
+                PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
                 callSignUpActivity(requireActivity())
             }
         }

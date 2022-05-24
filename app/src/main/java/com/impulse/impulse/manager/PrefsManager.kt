@@ -21,26 +21,25 @@ class PrefsManager private constructor(context: Context) {
         sharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
     }
 
-    // check first time user or other
-    fun setFirstTime(key: String?, value: Boolean?) {
+    fun setBoolean(key: String?, value: Boolean?) {
         val prefsEditor = sharedPreferences!!.edit()
         prefsEditor.putBoolean(key, value!!)
         prefsEditor.apply()
     }
 
+    // check first time user or other
     fun isFirstTime(key: String?): Boolean {
         return sharedPreferences?.getBoolean(key, true) ?: false
     }
 
     // check logged in or not
-    fun setLoggedIn(key: String?, value: Boolean?) {
-        val prefsEditor = sharedPreferences!!.edit()
-        prefsEditor.putBoolean(key, value!!)
-        prefsEditor.apply()
+    fun isLoggedIn(key: String?): Boolean {
+        return sharedPreferences?.getBoolean(key, false) ?: false
     }
 
-    fun isLoggedIn(key: String?): Boolean {
-        return sharedPreferences?.getBoolean(key, true) ?: false
+    // check logged in or not
+    fun isFilledName(key: String?): Boolean {
+        return sharedPreferences?.getBoolean(key, false) ?: false
     }
 
     fun saveData(key: String?, value: String?) {

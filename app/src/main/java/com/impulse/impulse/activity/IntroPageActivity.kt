@@ -1,8 +1,6 @@
 package com.impulse.impulse.activity
 
 import android.os.Bundle
-import android.text.Html
-import android.text.Spanned
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.impulse.impulse.R
@@ -47,7 +45,7 @@ class IntroPageActivity : BaseActivity() {
 
     private fun saveLoggedState() {
         isFirstTime = false
-        PrefsManager.getInstance(context)!!.setFirstTime("isFirstTime", isFirstTime)
+        PrefsManager.getInstance(context)!!.setBoolean("isFirstTime", isFirstTime)
     }
 
     private fun applyPageStateChanges() {

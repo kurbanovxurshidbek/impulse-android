@@ -39,6 +39,7 @@ class RegNameFragment : BaseFragment() {
         jshirFocusListener()
         passportFocusListener()
         binding.btnContinue.setOnClickListener {
+            PrefsManager.getInstance(requireContext())!!.setBoolean("isFilledName", true)
             callMainActivity(requireActivity())
         }
     }

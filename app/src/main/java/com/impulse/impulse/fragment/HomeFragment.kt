@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
 import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
+import com.impulse.impulse.utils.SpacesItemDecoration
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -38,13 +40,19 @@ class HomeFragment : BaseFragment() {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             recyclerView.adapter = HomeItemAdapter(requireContext(), getAllItems())
+            val decoration = SpacesItemDecoration(15)
+            recyclerView.addItemDecoration(decoration)
+
 
             btnCall.setOnLongClickListener {
                 btnCall.playAnimation()
                 true
             }
 
-            tvName.text = getString(R.string.str_hello_name, PrefsManager.getInstance(requireContext())!!.getData("userName"))
+            tvName.text = getString(
+                R.string.str_hello_name,
+                PrefsManager.getInstance(requireContext())!!.getData("userName")
+            )
         }
     }
 

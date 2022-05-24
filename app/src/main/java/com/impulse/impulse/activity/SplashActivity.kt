@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.impulse.impulse.R
@@ -46,8 +47,12 @@ class SplashActivity : BaseActivity() {
                     callIntroPageActivity(this@SplashActivity)
                     finish()
                 } else if (manager.isLoggedIn("isLoggedIn")) {
-                    callMainActivity(context)
-                    finish()
+                    if (manager.isFilledName("isFilledName")) {
+                        callMainActivity(context)
+                        finish()
+                    } else {
+                        callSignUpActivity(context)
+                    }
                 } else {
                     callSignInActivity(this@SplashActivity)
                     finish()
