@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/drawable/ic_age.xml" value="0.137" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/drawable/ic_bloodtype.xml" value="0.137" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/drawable/ic_edit.xml" value="0.137" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/drawable/ic_height.xml" value="0.137" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/drawable/ic_profile.xml" value="0.137" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/drawable/ic_weight.xml" value="0.137" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/activity_intro_page.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/activity_sign_in.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/activity_sign_up.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_call.xml" value="0.124" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_intro_page.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_intro_page_disabled.xml" value="0.1115" />
