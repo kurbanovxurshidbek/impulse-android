@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:src="@drawable/ic_profile" />
 
             <TextView
@@ -41,11 +41,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/str_edit"
                     android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/main_red"
+                    android:layout_marginRight="5dp"/>
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:src="@drawable/ic_edit"/>
             </LinearLayout>
         </LinearLayout>
@@ -94,7 +95,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#cbcbcb"/>
+                android:background="#ECECEC"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,20 +114,22 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="@string/str_age"
-                            android:textSize="16sp"/>
+                            android:textSize="16sp"
+                            android:layout_marginTop="1dp"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
                             android:gravity="bottom"
-                            android:text="@string/str_age"
+                            android:text="28 years"
+                            android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:textSize="23sp"/>
+                            android:textSize="24sp"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:src="@drawable/ic_age"
                             android:layout_gravity="right"/>
 
@@ -136,7 +139,7 @@
                 <LinearLayout
                     android:layout_width="2dp"
                     android:layout_height="100dp"
-                    android:background="#cbcbcb"/>
+                    android:background="#ECECEC"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -150,22 +153,24 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="@string/str_age"
-                            android:textSize="16sp"/>
+                            android:text="@string/str_blood_type"
+                            android:textSize="16sp"
+                            android:layout_marginTop="1dp"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
                             android:gravity="bottom"
-                            android:text="@string/str_age"
+                            android:text="ORh+"
+                            android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:textSize="23sp"/>
+                            android:textSize="24sp"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_age"
+                            android:src="@drawable/ic_bloodtype"
                             android:layout_gravity="right"/>
 
 
@@ -175,7 +180,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#cbcbcb"/>
+                android:background="#ECECEC"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -193,22 +198,24 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="@string/str_age"
-                            android:textSize="16sp"/>
+                            android:text="@string/str_height"
+                            android:textSize="16sp"
+                            android:layout_marginTop="1dp"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
                             android:gravity="bottom"
-                            android:text="@string/str_age"
+                            android:text="176 cm"
+                            android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:textSize="23sp"/>
+                            android:textSize="24sp"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_age"
+                            android:src="@drawable/ic_height"
                             android:layout_gravity="right"/>
 
 
@@ -217,7 +224,7 @@
                 <LinearLayout
                     android:layout_width="2dp"
                     android:layout_height="100dp"
-                    android:background="#cbcbcb"/>
+                    android:background="#ECECEC"/>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -230,22 +237,24 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="@string/str_age"
-                            android:textSize="16sp"/>
+                            android:text="@string/str_weight"
+                            android:textSize="16sp"
+                            android:layout_marginTop="1dp"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
                             android:gravity="bottom"
-                            android:text="@string/str_age"
+                            android:text="85 kg"
+                            android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:textSize="23sp"/>
+                            android:textSize="24sp"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_age"
+                            android:src="@drawable/ic_weight"
                             android:layout_gravity="right"/>
 
 
@@ -256,7 +265,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#cbcbcb"/>
+                android:background="#ECECEC"/>
 
 
         </LinearLayout>
