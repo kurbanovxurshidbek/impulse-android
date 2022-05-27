@@ -35,15 +35,11 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_pick_subject">Yordam olish uchun mavzuni tanlang</string>
     <string name="str_hello_name">Salom %s</string>
     <string name="str_see_location">Manzilingizni ko\'ring</string>
-<<<<<<< HEAD
     <string name="str_sms_sending_contacts">Xabar yuboriladigan kontaktlar ro\'yxati</string>
     <string name="str_contacts">Kontaktlar</string>
     <string name="str_add">Qo\'shish</string>
     <string name="str_search">Qidirish</string>
     <string name="str_message">Xabar</string>
-=======
-
-
     <string name="str_edit">Edit:</string>
     <string name="str_profile_data">Profile data:</string>
     <string name="str_age">Age:</string>
@@ -51,9 +47,8 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_height">Height:</string>
     <string name="str_weight">Weight:</string>
     <string name="str_textSize">16sp</string>
+    <string name="str_no_contacts">Sizda hozircha kontaktlar mavjud emas</string>
 
-
->>>>>>> 4404d0480924708a6c17736811f1693ed49d9678
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

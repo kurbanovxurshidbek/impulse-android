@@ -32,6 +32,14 @@ class ContactsItemAdapter(var context: Context, private var items: ArrayList<Con
         val item = items[position]
 
         if (holder is MyViewHolder) {
+            if (items.isEmpty()) {
+                holder.llContact.visibility = View.GONE
+                holder.llNoContact.visibility = View.VISIBLE
+
+            } else {
+                holder.llNoContact.visibility = View.GONE
+                holder.llContact.visibility = View.VISIBLE
+            }
             Glide.with(context).load(item.photo).into(holder.ivProfile)
             holder.tvName.text = item.name
             holder.tvRelation.text = item.relation
@@ -73,5 +81,7 @@ class ContactsItemAdapter(var context: Context, private var items: ArrayList<Con
         val ivArrow: ImageView = view.findViewById(R.id.ivArrow)
         val llExpandable: LinearLayout = view.findViewById(R.id.llExpandable)
         val rvChild: RecyclerView = view.findViewById(R.id.rvChild)
+        val llNoContact: LinearLayout = view.findViewById(R.id.llNoContact)
+
     }
 }

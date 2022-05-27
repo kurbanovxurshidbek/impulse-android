@@ -1,6 +1,10 @@
 package com.impulse.impulse.activity
 
 import android.os.Bundle
+import android.widget.EditText
+import androidx.core.view.WindowInsetsCompat.Type.ime
+import androidx.core.view.WindowInsetsCompat.toWindowInsetsCompat
+import androidx.core.view.isGone
 import androidx.viewpager.widget.ViewPager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.ViewPagerAdapter
@@ -23,6 +27,12 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initViews() {
+        window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+            val insetsCompat = toWindowInsetsCompat(insets, view)
+            binding.bottomNavigationView.isGone = insetsCompat.isVisible(ime())
+            view.onApplyWindowInsets(insets)
+        }
+
         binding.apply {
             bottomNavigationView.setOnItemSelectedListener { item ->
                 when (item.itemId) {
