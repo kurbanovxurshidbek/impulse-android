@@ -33,7 +33,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/str_contacts"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -49,12 +49,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/str_add"
                         android:textColor="@color/main_red"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/ivAdd"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:src="@drawable/ic_add"
                         app:tint="@color/main_red" />
 
@@ -73,19 +73,7 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_ll_home"
-            android:drawableStart="@mipmap/ic_search"
-            android:drawablePadding="10dp"
-            android:hint="@string/str_search"
-            android:padding="10dp"
-            android:textColorHint="@color/black">
-
-        </com.google.android.material.textfield.TextInputEditText>
+        
 
         <TextView
             android:layout_width="wrap_content"

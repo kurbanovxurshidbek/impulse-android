@@ -12,7 +12,7 @@
         <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/activity_intro_page.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/activity_sign_in.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/activity_sign_up.xml" value="0.27447916666666666" />
-        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/impulse-android/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_call.xml" value="0.124" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_intro_page.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_btn_intro_page_disabled.xml" value="0.1115" />
@@ -22,6 +22,8 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_ll_text.xml" value="0.1675" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bottom_navigation_color_selector.xml" value="0.124" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/custom_checkbox.xml" value="0.1115" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/ic_add.xml" value="0.1215" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/ic_edit.xml" value="0.1215" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1115" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/ic_logo.xml" value="0.1115" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/activity_intro_page.xml" value="0.21014492753623187" />
