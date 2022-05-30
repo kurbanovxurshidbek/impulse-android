@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdk 32
 
@@ -50,6 +52,9 @@ dependencies {
     implementation 'com.hbb20:ccp:2.6.0'
     // lottie animation files
     implementation 'com.airbnb.android:lottie:5.0.3'
+    // firebase
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
