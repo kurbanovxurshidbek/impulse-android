@@ -16,6 +16,9 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.impulse.impulse.adapter.ContactItemAdapter
+import com.impulse.impulse.database.AppDatabase
+import com.impulse.impulse.database.model.Contact
 import com.impulse.impulse.databinding.FragmentContactsBinding
 import com.impulse.impulse.utils.SpacesItemDecoration
 
@@ -30,6 +33,9 @@ class ContactsFragment : BaseFragment() {
 
     private val REQUEST_READ_CONTACTS_PERMISSION = 0
     private val REQUEST_CONTACT = 1
+
+    private lateinit var contactAdapter: ContactItemAdapter
+    private lateinit var appDatabase: AppDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +74,7 @@ class ContactsFragment : BaseFragment() {
             // is like a "where" clause here
             val cursor: Cursor? = activity?.contentResolver!!
                 .query(contactUri!!, null, null, null, null)
-            var cursorPhone: Cursor?
+            val cursorPhone: Cursor?
             try {
                 if (cursor!!.moveToFirst()) {
                     // get contact details
@@ -96,6 +102,7 @@ class ContactsFragment : BaseFragment() {
                             val contactNumber =
                                 cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                             //set phone number
+
                             Log.d("@@@", "onActivityResult: $contactNumber")
                             Log.d("@@@", "onActivityResult: $name")
                         }
@@ -118,6 +125,15 @@ class ContactsFragment : BaseFragment() {
     private fun initViews() {
         // Intent to pick contacts
         val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+
+        appDatabase = AppDatabase.getInstance(requireContext())
+        contactAdapter = ContactItemAdapter(
+            appDatabase.contactDao().getAllContacts(),
+            object : ContactItemAdapter.OnItemClickListener {
+                override fun onItemClicked(contact: Contact, position: Int) {
+
+                }
+            })
 
         binding.apply {
             recyclerView.setHasFixedSize(true)
