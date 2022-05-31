@@ -17,7 +17,7 @@ class ProfileFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -31,6 +31,8 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        binding.apply {
 
+        }
     }
 }

@@ -45,15 +45,10 @@
                     android:layout_marginRight="5dp"/>
 
                 <ImageView
-<<<<<<< HEAD
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_add"/>
-=======
+
                     android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/ic_edit"/>
->>>>>>> ba57bda316b8bd7601baf95c0cca4a6f432bb1b8
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_edit" />
             </LinearLayout>
         </LinearLayout>
 
