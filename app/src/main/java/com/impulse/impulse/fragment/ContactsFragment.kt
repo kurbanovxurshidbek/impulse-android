@@ -17,16 +17,19 @@ import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.adapter.ContactItemAdapter
 import com.impulse.impulse.database.AppDatabase
 import com.impulse.impulse.database.model.Contact
 import com.impulse.impulse.databinding.FragmentContactsBinding
 import com.impulse.impulse.utils.SpacesItemDecoration
+import com.impulse.impulse.viewmodel.ContactViewModel
 
 
 class ContactsFragment : BaseFragment() {
-
+    private lateinit var contactViewModel: ContactViewModel
     private var _binding: FragmentContactsBinding? = null
 
     // This property is only valid between onCreateView and
@@ -124,6 +127,7 @@ class ContactsFragment : BaseFragment() {
 
 
     private fun initViews() {
+        contactViewModel = ViewModelProvider(this)[ContactViewModel::class.java]
         // Intent to pick contacts
         val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
