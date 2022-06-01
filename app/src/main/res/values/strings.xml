@@ -48,6 +48,12 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_weight">Weight:</string>
     <string name="str_textSize">16sp</string>
     <string name="str_no_contacts">Sizda hozircha kontaktlar mavjud emas</string>
+    <string name="str_dialog_text">Holatingiz qanaqa?</string>
+    <string name="str_not_bad">Qoniqarli</string>
+    <string name="str_easy">Yengil</string>
+    <string name="str_medium">O\'rta</string>
+    <string name="str_hard">Og\'ir</string>
+    <string name="str_hardest">Juda og\'ir</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

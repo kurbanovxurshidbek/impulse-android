@@ -1,13 +1,18 @@
 package com.impulse.impulse.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.get
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
+import com.impulse.impulse.databinding.DialogHomeViewBinding
 import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
@@ -45,7 +50,28 @@ class HomeFragment : BaseFragment() {
 
 
             btnCall.setOnLongClickListener {
-                btnCall.playAnimation()
+                val dialog = AlertDialog.Builder(requireContext())
+                val dialogBinding = DialogHomeViewBinding.inflate(layoutInflater)
+                dialog.setView(dialogBinding.root)
+
+                dialog.setPositiveButton("Ok") { dialog, which ->
+                    btnCall.playAnimation()
+
+                    dialogBinding.apply {
+                        if (rgHome.checkedRadioButtonId == -1) {
+                            //
+                        } else {
+                            val checkedId = rgHome.checkedRadioButtonId
+                            val radioButton = rgHome.findViewById<RadioButton>(checkedId)
+                            val idx = rgHome.indexOfChild(radioButton)
+
+                            val r = rgHome.getChildAt(idx) as RadioButton
+                            val text = r.text
+                        }
+                    }
+                }
+
+                dialog.show()
                 true
             }
 
@@ -63,4 +89,5 @@ class HomeFragment : BaseFragment() {
         items.add(HomeItem(getString(R.string.str_feeling_bad), R.mipmap.ic_feeling_bad))
         return items
     }
+
 }
