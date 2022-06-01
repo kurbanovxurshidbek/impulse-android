@@ -13,8 +13,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.adapter.ContactItemAdapter
 import com.impulse.impulse.database.AppDatabase
@@ -36,6 +38,7 @@ class ContactsFragment : BaseFragment() {
 
     private lateinit var contactAdapter: ContactItemAdapter
     private lateinit var appDatabase: AppDatabase
+    private lateinit var contacts: List<Contact>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,9 +105,7 @@ class ContactsFragment : BaseFragment() {
                             val contactNumber =
                                 cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                             //set phone number
-
-                            Log.d("@@@", "onActivityResult: $contactNumber")
-                            Log.d("@@@", "onActivityResult: $name")
+                            appDatabase.contactDao().addContact(Contact(name, contactNumber))
                         }
                         cursorPhone.close()
                     }
@@ -126,12 +127,20 @@ class ContactsFragment : BaseFragment() {
         // Intent to pick contacts
         val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
-        appDatabase = AppDatabase.getInstance(requireContext())
+        appDatabase = AppDatabase.getInstance(requireActivity())
+        contacts = ArrayList()
+        contacts = appDatabase.contactDao().getAllContacts()
+        Log.d("@@@", "initViews: ${contacts.size}")
         contactAdapter = ContactItemAdapter(
-            appDatabase.contactDao().getAllContacts(),
+            contacts,
             object : ContactItemAdapter.OnItemClickListener {
-                override fun onItemClicked(contact: Contact, position: Int) {
-
+                override fun onItemClicked(
+                    layout: LinearLayout,
+                    position: Int,
+                    isExpandable: Boolean
+                ) {
+                    layout.isVisible = isExpandable
+                    contactAdapter.notifyItemChanged(position)
                 }
             })
 
@@ -141,6 +150,8 @@ class ContactsFragment : BaseFragment() {
                 LinearLayoutManager(context)
             val decoration = SpacesItemDecoration(20)
             recyclerView.addItemDecoration(decoration)
+
+            recyclerView.adapter = contactAdapter
 
             llAdd.setOnClickListener {
                 startActivityForResult(pickContact, REQUEST_CONTACT)
