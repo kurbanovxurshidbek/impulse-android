@@ -17,7 +17,6 @@ import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.adapter.ContactItemAdapter
@@ -25,11 +24,9 @@ import com.impulse.impulse.database.AppDatabase
 import com.impulse.impulse.database.model.Contact
 import com.impulse.impulse.databinding.FragmentContactsBinding
 import com.impulse.impulse.utils.SpacesItemDecoration
-import com.impulse.impulse.viewmodel.ContactViewModel
 
 
 class ContactsFragment : BaseFragment() {
-    private lateinit var contactViewModel: ContactViewModel
     private var _binding: FragmentContactsBinding? = null
 
     // This property is only valid between onCreateView and
@@ -41,7 +38,6 @@ class ContactsFragment : BaseFragment() {
 
     private lateinit var contactAdapter: ContactItemAdapter
     private lateinit var appDatabase: AppDatabase
-    private lateinit var contacts: List<Contact>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,6 +105,7 @@ class ContactsFragment : BaseFragment() {
                                 cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                             //set phone number
                             appDatabase.contactDao().addContact(Contact(name, contactNumber))
+                            refreshAdapter()
                         }
                         cursorPhone.close()
                     }
@@ -127,29 +124,13 @@ class ContactsFragment : BaseFragment() {
 
 
     private fun initViews() {
-        contactViewModel = ViewModelProvider(this)[ContactViewModel::class.java]
         // Intent to pick contacts
         val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
         appDatabase = AppDatabase.getInstance(requireActivity())
-        contacts = ArrayList()
-        contacts = appDatabase.contactDao().getAllContacts()
-        Log.d("@@@", "initViews: ${contacts.size}")
-        contactAdapter = ContactItemAdapter(
-            contacts,
-            object : ContactItemAdapter.OnItemClickListener {
-                override fun onItemClicked(
-                    layout: LinearLayout,
-                    position: Int,
-                    isExpandable: Boolean
-                ) {
-                    layout.isVisible = isExpandable
-                    contactAdapter.notifyItemChanged(position)
-                }
-            })
+        refreshAdapter()
 
         binding.apply {
-            recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager =
                 LinearLayoutManager(context)
             val decoration = SpacesItemDecoration(20)
@@ -157,12 +138,16 @@ class ContactsFragment : BaseFragment() {
 
             recyclerView.adapter = contactAdapter
 
-            llAdd.setOnClickListener {
+            fab.setOnClickListener {
                 startActivityForResult(pickContact, REQUEST_CONTACT)
             }
         }
 
         requestContactsPermission();
+    }
+
+    private fun refreshAdapter() {
+        contactAdapter = ContactItemAdapter(appDatabase.contactDao().getAllContacts())
     }
 
     private fun hasContactsPermission(): Boolean {

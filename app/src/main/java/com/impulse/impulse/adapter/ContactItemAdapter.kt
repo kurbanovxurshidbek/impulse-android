@@ -9,9 +9,8 @@ import com.impulse.impulse.database.model.Contact
 import com.impulse.impulse.databinding.ItemContactViewBinding
 import com.impulse.impulse.fragment.ContactsFragment
 
-class ContactItemAdapter(var items: List<Contact>, var listener: OnItemClickListener) :
+class ContactItemAdapter(var items: List<Contact>) :
     BaseAdapter() {
-    private var isExpandable = false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ContactViewHolder(ItemContactViewBinding.inflate(LayoutInflater.from(parent.context)))
     }
@@ -32,21 +31,7 @@ class ContactItemAdapter(var items: List<Contact>, var listener: OnItemClickList
             binding.apply {
                 tvName.text = contact.name
                 tvPhoneNumber.text = contact.number
-
-                llContact.setOnClickListener {
-                    if (isExpandable) {
-                        ivArrow.rotation = 90f
-                    } else {
-                        ivArrow.rotation = 270f
-                    }
-                    isExpandable = !isExpandable
-                    listener.onItemClicked(binding.llPhoneNumber, position, isExpandable)
-                }
             }
         }
-    }
-
-    interface OnItemClickListener {
-        fun onItemClicked(layout: LinearLayout, position: Int, isExpandable: Boolean)
     }
 }

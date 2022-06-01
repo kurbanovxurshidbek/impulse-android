@@ -54,7 +54,7 @@ class HomeFragment : BaseFragment() {
                 val dialogBinding = DialogHomeViewBinding.inflate(layoutInflater)
                 dialog.setView(dialogBinding.root)
 
-                dialog.setPositiveButton("Ok") { dialog, which ->
+                dialog.setPositiveButton(getString(R.string.str_accept)) { dialog, which ->
                     btnCall.playAnimation()
 
                     dialogBinding.apply {
@@ -69,6 +69,10 @@ class HomeFragment : BaseFragment() {
                             val text = r.text
                         }
                     }
+                }
+
+                dialog.setNegativeButton(getString(R.string.str_ignore)) { dialog, which ->
+
                 }
 
                 dialog.show()

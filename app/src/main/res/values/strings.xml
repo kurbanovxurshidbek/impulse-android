@@ -54,6 +54,12 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_medium">O\'rta</string>
     <string name="str_hard">Og\'ir</string>
     <string name="str_hardest">Juda og\'ir</string>
+    <string name="str_accept">Tasdiqlash</string>
+    <string name="str_ignore">Bekor Qilish</string>
+    <string name="str_disclaimer">Ichki ishlar organi, yongʼinga qarshi xizmat,
+        tibbiy tez yordam va boshqa maxsus xizmatlarni qasddan aldab chaqirganlik — bazaviy hisoblash miqdorining
+        bir baravaridan uch baravarigacha miqdorda jarima solishga sabab boʼladi.</string>
+    <string name="str_show_law">Qonun bilan tanishish</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

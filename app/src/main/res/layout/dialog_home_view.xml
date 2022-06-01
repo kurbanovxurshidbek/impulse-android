@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_ll_home">
 
     <TextView
         android:id="@+id/tvDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="monospace"
         android:text="@string/str_dialog_text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -23,6 +23,7 @@
         android:id="@+id/rgHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,41 +31,82 @@
         app:layout_constraintTop_toBottomOf="@id/tvDialog">
 
         <RadioButton
-            android:id="@+id/rbNotBad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/main_red"
-            android:text="@string/str_not_bad" />
-
-        <RadioButton
             android:id="@+id/rbEasy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/main_red"
-            android:text="@string/str_easy" />
+            android:paddingHorizontal="10dp"
+            android:text="@string/str_easy"
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/rbMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/main_red"
-            android:text="@string/str_medium" />
+            android:paddingHorizontal="10dp"
+            android:text="@string/str_medium"
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/rbHard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/main_red"
-            android:text="@string/str_hard" />
+            android:paddingHorizontal="10dp"
+            android:text="@string/str_hard"
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/rbHardest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/main_red"
-            android:text="@string/str_hardest" />
+            android:paddingHorizontal="10dp"
+            android:text="@string/str_hardest"
+            android:textSize="18sp" />
 
     </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/bg_ll_text"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rgHome">
+
+        <TextView
+            android:id="@+id/tvDisclaimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/str_disclaimer" />
+
+        <TextView
+            android:id="@+id/tvLaw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_show_law"
+            android:textColor="@color/blue" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
