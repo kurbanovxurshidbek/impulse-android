@@ -1,6 +1,7 @@
 package com.impulse.impulse.fragment
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -76,6 +77,10 @@ class HomeFragment : BaseFragment() {
                 }
 
                 dialog.show()
+
+
+                dialogBinding.tvLaw.movementMethod = LinkMovementMethod.getInstance()
+
                 true
             }
 
@@ -85,6 +90,7 @@ class HomeFragment : BaseFragment() {
             )
         }
     }
+
 
     private fun getAllItems(): ArrayList<HomeItem> {
         val items = ArrayList<HomeItem>()
