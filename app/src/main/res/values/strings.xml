@@ -60,6 +60,10 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
         tibbiy tez yordam va boshqa maxsus xizmatlarni qasddan aldab chaqirganlik — bazaviy hisoblash miqdorining
         bir baravaridan uch baravarigacha miqdorda jarima solishga sabab boʼladi.</string>
     <string name="str_show_law">Qonun bilan tanishish</string>
+    <string name="str_message_that_will_be_sent">Yuboriladigan xabar</string>
+    <string name="str_part_one_message">Birinchi qism</string>
+    <string name="str_part_two_message">Ikkinchi qism (joylashuv bilan) </string>
+    <string name="str_enter_message">Xabarni kiriting</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -14,14 +14,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RadioButton
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.impulse.impulse.R
 import com.impulse.impulse.adapter.ContactItemAdapter
 import com.impulse.impulse.database.AppDatabase
 import com.impulse.impulse.database.model.Contact
+import com.impulse.impulse.databinding.DialogContactMessageViewBinding
+import com.impulse.impulse.databinding.DialogHomeViewBinding
 import com.impulse.impulse.databinding.FragmentContactsBinding
 import com.impulse.impulse.utils.SpacesItemDecoration
 
@@ -141,9 +146,28 @@ class ContactsFragment : BaseFragment() {
             fab.setOnClickListener {
                 startActivityForResult(pickContact, REQUEST_CONTACT)
             }
+
+            ivEdit.setOnClickListener {
+                setEditDialog()
+            }
         }
 
         requestContactsPermission();
+    }
+
+    private fun setEditDialog() {
+        val dialog = AlertDialog.Builder(requireContext())
+        val dialogBinding = DialogContactMessageViewBinding.inflate(layoutInflater)
+        dialog.setView(dialogBinding.root)
+
+        dialog.setPositiveButton(getString(R.string.str_accept)) { dialog, which ->
+
+        }
+
+        dialog.setNegativeButton(getString(R.string.str_ignore)) { dialog, which ->
+
+        }
+        dialog.show()
     }
 
     private fun refreshAdapter() {
