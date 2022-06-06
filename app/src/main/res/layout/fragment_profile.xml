@@ -45,10 +45,10 @@
                     android:layout_marginRight="5dp"/>
 
                 <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_edit"/>
 
-                    android:layout_width="15dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_edit" />
             </LinearLayout>
         </LinearLayout>
 
@@ -60,12 +60,14 @@
             android:layout_marginTop="20dp">
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/pfImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 app:shapeAppearanceOverlay="@style/corner"
                 android:src="@drawable/img_defoult"/>
 
             <TextView
+                android:id="@+id/tName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Abduvaliyev Saidmurod"
@@ -73,14 +75,6 @@
                 android:textSize="23sp"
                 android:singleLine="true"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dec 14.2003"
-                android:textSize="16sp"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
 
@@ -119,6 +113,7 @@
                             android:layout_marginTop="1dp"/>
 
                         <TextView
+                            android:id="@+id/tAge"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
@@ -159,6 +154,7 @@
                             android:layout_marginTop="1dp"/>
 
                         <TextView
+                            android:id="@+id/tBloodtype"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
@@ -204,6 +200,7 @@
                             android:layout_marginTop="1dp"/>
 
                         <TextView
+                            android:id="@+id/tHeight"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
@@ -243,6 +240,7 @@
                             android:layout_marginTop="1dp"/>
 
                         <TextView
+                            android:id="@+id/tWeight"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"

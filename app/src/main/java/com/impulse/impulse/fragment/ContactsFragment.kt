@@ -1,17 +1,24 @@
 package com.impulse.impulse.fragment
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.impulse.impulse.R
-import com.impulse.impulse.adapter.ContactsItemAdapter
-import com.impulse.impulse.database.AppDatabase
 import com.impulse.impulse.databinding.FragmentContactsBinding
-import com.impulse.impulse.model.Contact
-import com.impulse.impulse.model.ContactNestedItem
 import com.impulse.impulse.utils.SpacesItemDecoration
+
 
 class ContactsFragment : BaseFragment() {
 
@@ -20,7 +27,9 @@ class ContactsFragment : BaseFragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var appDatabase: AppDatabase
+
+    private val REQUEST_READ_CONTACTS_PERMISSION = 0
+    private val REQUEST_CONTACT = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +37,6 @@ class ContactsFragment : BaseFragment() {
     ): View {
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
         val view = binding.root
-        appDatabase = AppDatabase.getInstance(requireContext())
         initViews()
         return view
     }
@@ -38,42 +46,111 @@ class ContactsFragment : BaseFragment() {
         _binding = null
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_READ_CONTACTS_PERMISSION && grantResults.isNotEmpty()) {
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    @SuppressLint("Range")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK) return
+        if (requestCode == REQUEST_CONTACT && data != null) {
+            val contactUri: Uri? = data.data
+
+            // Perform your query - the contactUri
+            // is like a "where" clause here
+            val cursor: Cursor? = activity?.contentResolver!!
+                .query(contactUri!!, null, null, null, null)
+            var cursorPhone: Cursor?
+            try {
+                if (cursor!!.moveToFirst()) {
+                    // get contact details
+                    val contactId =
+                        cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID))
+                    val contactThumbnail =
+                        cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI))
+                    val name: String =
+                        cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+                    val idResults =
+                        cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
+                    val idResultHold = idResults.toInt()
+
+                    if (idResultHold == 1) {
+                        cursorPhone = requireActivity().contentResolver.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId,
+                            null,
+                            null
+                        )
+                        //a contact may have multiple phone numbers
+                        while (cursorPhone!!.moveToNext()) {
+                            //get phone number
+                            val contactNumber =
+                                cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                            //set phone number
+                            Log.d("@@@", "onActivityResult: $contactNumber")
+                            Log.d("@@@", "onActivityResult: $name")
+                        }
+                        cursorPhone.close()
+                    }
+
+                }
+
+                // Double-check that you
+                // actually got results
+                if (cursor.count == 0) return
+
+            } finally {
+                cursor?.close()
+            }
+        }
+    }
+
+
     private fun initViews() {
+        // Intent to pick contacts
+        val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+
         binding.apply {
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager =
                 LinearLayoutManager(context)
             val decoration = SpacesItemDecoration(20)
             recyclerView.addItemDecoration(decoration)
-            recyclerView.adapter = ContactsItemAdapter(requireContext(), getAllContacts())
 
+            llAdd.setOnClickListener {
+                startActivityForResult(pickContact, REQUEST_CONTACT)
+            }
         }
+
+        requestContactsPermission();
     }
 
-    private fun getAllContacts(): ArrayList<Contact> {
-        val items = ArrayList<Contact>()
-        val nestedItems = ArrayList<ContactNestedItem>()
-        nestedItems.add(ContactNestedItem("+998901203022", "Help"))
-        items.add(
-            Contact(
-                "https://images.unsplash.com/photo-1653587106660-4908e9a7bae7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                "John", "Son", false, nestedItems
-            )
-        )
+    private fun hasContactsPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.READ_CONTACTS
+        ) ==
+                PackageManager.PERMISSION_GRANTED
+    }
 
-        items.add(
-            Contact(
-                "https://images.unsplash.com/photo-1653587106660-4908e9a7bae7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                "John", "Son", false, nestedItems
+    // Request contact permission if it
+    // has not been granted already
+    private fun requestContactsPermission() {
+        if (!hasContactsPermission()) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_CONTACTS),
+                REQUEST_READ_CONTACTS_PERMISSION
             )
-        )
-
-        items.add(
-            Contact(
-                "https://images.unsplash.com/photo-1653587106660-4908e9a7bae7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                "John", "Son", false, nestedItems
-            )
-        )
-        return items
+        }
     }
 }
