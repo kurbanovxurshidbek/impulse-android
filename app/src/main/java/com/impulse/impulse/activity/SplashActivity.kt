@@ -52,6 +52,7 @@ class SplashActivity : BaseActivity() {
                         finish()
                     } else {
                         callSignUpActivity(context)
+                        finish()
                     }
                 } else {
                     callSignInActivity(this@SplashActivity)

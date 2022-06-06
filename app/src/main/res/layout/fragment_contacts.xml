@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_grey"
-        app:elevation="0dp">
+        app:elevation="5dp">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -39,24 +39,17 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llAdd"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end|center_vertical">
 
-                    <TextView
-                        android:id="@+id/tvAdd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str_add"
-                        android:textColor="@color/main_red"
-                        android:textSize="14sp" />
-
                     <ImageView
-                        android:id="@+id/ivAdd"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:src="@drawable/ic_add"
+                        android:id="@+id/ivEdit"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_edit"
                         app:tint="@color/main_red" />
 
                 </LinearLayout>
@@ -79,7 +72,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,8 +84,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
         </LinearLayout>
@@ -103,14 +96,15 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
+            android:layout_gravity="bottom|end"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:scaleType="center"
-            android:src="@drawable/ic_edit"
-            app:backgroundTint="@color/white"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/main_red"
             app:elevation="1dp"
-            app:tint="@color/main_red" />
+            app:rippleColor="@color/light_grey"
+            app:tint="@color/white" />
 
     </FrameLayout>
 

@@ -1,59 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_ll_home"
-    android:orientation="vertical"
+    android:layout_marginTop="4dp"
+    android:background="@drawable/bg_ll_contact"
     android:padding="10dp">
 
-    <LinearLayout
-        android:id="@+id/llContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/app_name" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_person"
-            app:shapeAppearanceOverlay="@style/corner" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".8"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingStart="16dp">
+    <TextView
+        android:id="@+id/tvPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/str_show_law" />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
 
-        </LinearLayout>
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_weight="0.3"
+        android:src="@drawable/ic_delete"
+        app:tint="@color/main_red" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llNoContact"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_no_contacts"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-    </LinearLayout>
 
 </LinearLayout>
