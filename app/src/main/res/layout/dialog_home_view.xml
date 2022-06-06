@@ -136,6 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_btn_intro_page"
+                android:enabled="false"
                 android:text="@string/str_accept"
                 android:textColor="@color/black"
                 app:backgroundTint="@null" />

@@ -14,16 +14,29 @@ import com.impulse.impulse.fragment.FirstAidFragment
 import com.impulse.impulse.fragment.HomeFragment
 import com.impulse.impulse.fragment.ProfileFragment
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), HomeFragment.ProfileListener {
     private val TAG = MainActivity::class.java.toString()
     private var index = 0
     private lateinit var binding: ActivityMainBinding
+    private lateinit var profileFragment: ProfileFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViews()
+    }
+
+    override fun scrollToProfile() {
+        index = 3
+        scrollByIndex(index)
+    }
+
+    private fun scrollByIndex(index: Int) {
+        binding.apply {
+            viewPager.currentItem = index
+            bottomNavigationView.menu.getItem(index).isChecked = true
+        }
     }
 
     private fun initViews() {
@@ -62,6 +75,8 @@ class MainActivity : BaseActivity() {
 
                 }
             })
+            //Profile Fragment are global for communication purpose
+            profileFragment = ProfileFragment()
             setUpViewPager(viewPager)
         }
     }
@@ -71,7 +86,7 @@ class MainActivity : BaseActivity() {
         adapter.addFragment(HomeFragment())
         adapter.addFragment(ContactsFragment())
         adapter.addFragment(FirstAidFragment())
-        adapter.addFragment(ProfileFragment())
+        adapter.addFragment(profileFragment)
         viewPager!!.adapter = adapter
     }
 

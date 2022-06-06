@@ -28,10 +28,11 @@
                     android:gravity="start|center">
 
                     <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivProfile"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_user"
+                        android:src="@drawable/ic_profile"
                         app:shapeAppearanceOverlay="@style/corner" />
 
                     <TextView
