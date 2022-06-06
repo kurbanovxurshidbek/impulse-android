@@ -43,6 +43,7 @@ class ContactsFragment : BaseFragment() {
 
     private lateinit var contactAdapter: ContactItemAdapter
     private lateinit var appDatabase: AppDatabase
+    private lateinit var contacts: ArrayList<Contact>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,8 +110,8 @@ class ContactsFragment : BaseFragment() {
                             val contactNumber =
                                 cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                             //set phone number
-                            appDatabase.contactDao().addContact(Contact(name, contactNumber))
-                            refreshAdapter()
+                            val contact = Contact(name, contactNumber)
+                            saveContactToDatabase(contact)
                         }
                         cursorPhone.close()
                     }
@@ -127,13 +128,21 @@ class ContactsFragment : BaseFragment() {
         }
     }
 
+    private fun saveContactToDatabase(contact: Contact) {
+        appDatabase.contactDao().addContact(contact)
+        contacts.add(contact)
+        contactAdapter.notifyItemInserted(contacts.size - 1)
+        refreshAdapter(contacts)
+    }
+
 
     private fun initViews() {
         // Intent to pick contacts
         val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
+        contacts = ArrayList()
         appDatabase = AppDatabase.getInstance(requireActivity())
-        refreshAdapter()
+        contacts = appDatabase.contactDao().getAllContacts() as ArrayList<Contact>
 
         binding.apply {
             recyclerView.layoutManager =
@@ -141,7 +150,7 @@ class ContactsFragment : BaseFragment() {
             val decoration = SpacesItemDecoration(20)
             recyclerView.addItemDecoration(decoration)
 
-            recyclerView.adapter = contactAdapter
+            refreshAdapter(contacts)
 
             fab.setOnClickListener {
                 startActivityForResult(pickContact, REQUEST_CONTACT)
@@ -156,22 +165,32 @@ class ContactsFragment : BaseFragment() {
     }
 
     private fun setEditDialog() {
-        val dialog = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
         val dialogBinding = DialogContactMessageViewBinding.inflate(layoutInflater)
-        dialog.setView(dialogBinding.root)
+        builder.setView(dialogBinding.root)
+        val dialog = builder.create()
 
-        dialog.setPositiveButton(getString(R.string.str_accept)) { dialog, which ->
-
+        dialogBinding.btnOk.setOnClickListener {
+            dialog.dismiss()
         }
 
-        dialog.setNegativeButton(getString(R.string.str_ignore)) { dialog, which ->
-
+        dialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
         }
+
         dialog.show()
     }
 
-    private fun refreshAdapter() {
-        contactAdapter = ContactItemAdapter(appDatabase.contactDao().getAllContacts())
+    private fun refreshAdapter(contacts: ArrayList<Contact>) {
+        contactAdapter = ContactItemAdapter(this@ContactsFragment, contacts)
+        binding.recyclerView.adapter = contactAdapter
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        if (isVisibleToUser) {
+            refreshAdapter(contacts)
+        }
     }
 
     private fun hasContactsPermission(): Boolean {
@@ -193,4 +212,12 @@ class ContactsFragment : BaseFragment() {
             )
         }
     }
+
+    fun deleteContactFromDatabase(contact: Contact, position: Int) {
+        appDatabase.contactDao().deleteContact(contact)
+        contacts.remove(contact)
+        contactAdapter.notifyItemRemoved(position)
+        refreshAdapter(contacts)
+    }
+
 }

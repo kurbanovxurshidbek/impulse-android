@@ -51,13 +51,13 @@ class HomeFragment : BaseFragment() {
 
 
             btnCall.setOnLongClickListener {
-                val dialog = AlertDialog.Builder(requireContext())
+                var dialogChosenOption: String? = null
+                val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
                 val dialogBinding = DialogHomeViewBinding.inflate(layoutInflater)
-                dialog.setView(dialogBinding.root)
+                builder.setView(dialogBinding.root)
+                val dialog = builder.create()
 
-                dialog.setPositiveButton(getString(R.string.str_accept)) { dialog, which ->
-                    btnCall.playAnimation()
-
+                dialogBinding.btnOk.setOnClickListener {
                     dialogBinding.apply {
                         if (rgHome.checkedRadioButtonId == -1) {
                             //
@@ -67,13 +67,19 @@ class HomeFragment : BaseFragment() {
                             val idx = rgHome.indexOfChild(radioButton)
 
                             val r = rgHome.getChildAt(idx) as RadioButton
-                            val text = r.text
+                            dialogChosenOption = r.text.toString()
+                            Log.d("@@@", "Home Dialog option : $dialogChosenOption")
                         }
                     }
+                    if (dialogChosenOption != null) {
+                        btnCall.playAnimation()
+                        Log.d("@@@", "Home Dialog option : $dialogChosenOption")
+                    }
+                    dialog.dismiss()
                 }
 
-                dialog.setNegativeButton(getString(R.string.str_ignore)) { dialog, which ->
-
+                dialogBinding.btnCancel.setOnClickListener {
+                    dialog.dismiss()
                 }
 
                 dialog.show()
