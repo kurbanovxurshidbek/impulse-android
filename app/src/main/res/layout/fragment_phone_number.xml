@@ -141,13 +141,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp">
 
         <TextView
             android:id="@+id/tvTermsOfUse"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight=".9"
             android:text="@string/str_term_of_use"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -161,29 +160,35 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnContinue"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_btn_intro_page"
-            android:enabled="false"
-            android:paddingVertical="12dp"
-            android:text="@string/str_continue"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:gravity="bottom">
 
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_btn_intro_page"
+                android:enabled="false"
+                android:paddingVertical="12dp"
+                android:text="@string/str_continue"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>
