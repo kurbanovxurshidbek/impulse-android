@@ -13,18 +13,29 @@
         android:theme="@style/Theme.Impulse">
         <activity
             android:name=".activity.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.IntroPageActivity" />
-        <activity android:name=".activity.SignInActivity" />
-        <activity android:name=".activity.SignUpActivity" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.IntroPageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SignUpActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

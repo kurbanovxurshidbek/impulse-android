@@ -26,6 +26,7 @@ import com.impulse.impulse.adapter.ContactItemAdapter
 import com.impulse.impulse.database.AppDatabase
 import com.impulse.impulse.database.model.Contact
 import com.impulse.impulse.databinding.DialogContactMessageViewBinding
+import com.impulse.impulse.databinding.DialogDeleteMessageBinding
 import com.impulse.impulse.databinding.DialogHomeViewBinding
 import com.impulse.impulse.databinding.FragmentContactsBinding
 import com.impulse.impulse.utils.SpacesItemDecoration
@@ -214,10 +215,24 @@ class ContactsFragment : BaseFragment() {
     }
 
     fun deleteContactFromDatabase(contact: Contact, position: Int) {
-        appDatabase.contactDao().deleteContact(contact)
-        contacts.remove(contact)
-        contactAdapter.notifyItemRemoved(position)
-        refreshAdapter(contacts)
+        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+        val dialogBinding = DialogDeleteMessageBinding.inflate(layoutInflater)
+        builder.setView(dialogBinding.root)
+        val dialog = builder.create()
+
+        dialogBinding.btnOk.setOnClickListener {
+            appDatabase.contactDao().deleteContact(contact)
+            contacts.remove(contact)
+            contactAdapter.notifyItemRemoved(position)
+            refreshAdapter(contacts)
+            dialog.dismiss()
+        }
+
+        dialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
 }

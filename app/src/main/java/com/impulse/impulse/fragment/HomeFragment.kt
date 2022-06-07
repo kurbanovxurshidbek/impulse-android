@@ -1,6 +1,8 @@
 package com.impulse.impulse.fragment
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
@@ -20,6 +22,7 @@ import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
 import com.impulse.impulse.utils.SpacesItemDecoration
 import java.lang.RuntimeException
+import kotlin.math.log
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -97,33 +100,35 @@ class HomeFragment : BaseFragment() {
             builder.setView(dialogBinding.root)
             val dialog = builder.create()
 
-            dialogBinding.btnOk.setOnClickListener {
-                dialogBinding.apply {
+
+            dialogBinding.apply {
+                rbEasy.setOnClickListener { btnOk.isEnabled = true }
+                rbMedium.setOnClickListener { btnOk.isEnabled = true }
+                rbHard.setOnClickListener { btnOk.isEnabled = true }
+                rbHardest.setOnClickListener { btnOk.isEnabled = true }
+
+                btnOk.setOnClickListener {
                     if (rgHome.checkedRadioButtonId == -1) {
                         //
-                        dialogBinding.btnOk.isEnabled = false
-                        Log.d("@@@", "setDialog: ${"bosilmadi"}")
                     } else {
-                        Log.d("@@@", "setDialog: ${"bosildi"}")
                         val checkedId = rgHome.checkedRadioButtonId
                         val radioButton = rgHome.findViewById<RadioButton>(checkedId)
                         val idx = rgHome.indexOfChild(radioButton)
 
                         val r = rgHome.getChildAt(idx) as RadioButton
                         dialogChosenOption = r.text.toString()
-                        dialogBinding.btnOk.isEnabled = true
                         Log.d("@@@", "Home Dialog option : $dialogChosenOption")
                     }
-                }
-                if (dialogChosenOption != null) {
-                    dialogBinding.btnOk.isEnabled = false
                     btnCall.playAnimation()
                     Log.d("@@@", "Home Dialog option : $dialogChosenOption")
-                } else {
-                    dialogBinding.btnOk.isEnabled = true
+                    dialog.dismiss()
                 }
-                dialog.dismiss()
+
+                tvLaw.setOnClickListener {
+                    openLawWithBrowser()
+                }
             }
+
 
             dialogBinding.btnCancel.setOnClickListener {
                 dialog.dismiss()
@@ -133,6 +138,14 @@ class HomeFragment : BaseFragment() {
 
 
             dialogBinding.tvLaw.movementMethod = LinkMovementMethod.getInstance()
+        }
+    }
+
+    private fun openLawWithBrowser() {
+        val url = getString(R.string.str_open_law)
+        Intent(Intent.ACTION_VIEW).also {
+            it.data = Uri.parse(url)
+            startActivity(it)
         }
     }
 
