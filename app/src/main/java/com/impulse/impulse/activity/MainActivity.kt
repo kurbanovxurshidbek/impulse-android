@@ -14,7 +14,7 @@ import com.impulse.impulse.fragment.FirstAidFragment
 import com.impulse.impulse.fragment.HomeFragment
 import com.impulse.impulse.fragment.ProfileFragment
 
-class MainActivity : BaseActivity(), HomeFragment.ProfileListener {
+class MainActivity : BaseActivity(), HomeFragment.ProfileListener, FirstAidFragment.HomeListener {
     private val TAG = MainActivity::class.java.toString()
     private var index = 0
     private lateinit var binding: ActivityMainBinding
@@ -29,6 +29,11 @@ class MainActivity : BaseActivity(), HomeFragment.ProfileListener {
 
     override fun scrollToProfile() {
         index = 3
+        scrollByIndex(index)
+    }
+
+    override fun scrollToHome() {
+        index = 0
         scrollByIndex(index)
     }
 

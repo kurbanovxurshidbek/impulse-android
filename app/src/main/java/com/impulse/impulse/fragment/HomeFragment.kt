@@ -2,6 +2,7 @@ package com.impulse.impulse.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.core.view.get
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,9 +73,10 @@ class HomeFragment : BaseFragment() {
         binding.apply {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            recyclerView.adapter = HomeItemAdapter(requireContext(), getAllItems())
-            val decoration = SpacesItemDecoration(15)
+            recyclerView.setHasFixedSize(true)
+            val decoration = SpacesItemDecoration(10)
             recyclerView.addItemDecoration(decoration)
+            recyclerView.adapter = HomeItemAdapter(this@HomeFragment, getAllItems())
 
 
             btnCall.setOnLongClickListener {
@@ -117,7 +120,6 @@ class HomeFragment : BaseFragment() {
 
                         val r = rgHome.getChildAt(idx) as RadioButton
                         dialogChosenOption = r.text.toString()
-                        Log.d("@@@", "Home Dialog option : $dialogChosenOption")
                     }
                     btnCall.playAnimation()
                     Log.d("@@@", "Home Dialog option : $dialogChosenOption")
@@ -158,11 +160,14 @@ class HomeFragment : BaseFragment() {
         return items
     }
 
+    fun openFirstAidFragment() {
+        Log.d("@@@", "openFirstAidFragment: touched")
+    }
+
     /*
     * This interface is created for communication with ProfileFragment
     * */
     interface ProfileListener {
         fun scrollToProfile()
     }
-
 }
