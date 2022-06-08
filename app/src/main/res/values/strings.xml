@@ -67,7 +67,29 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_open_law">https://www.lex.uz/docs/97664#:~:text=754/0134%2D%D1%81%D0%BE%D0%BD)-,199%2D%D0%BC%D0%BE%D0%B4%D0%B4%D0%B0.%20%D0%9C%D0%B0%D1%85%D1%81%D1%83%D1%81%20%D1%85%D0%B8%D0%B7%D0%BC%D0%B0%D1%82%D0%BB%D0%B0%D1%80%D0%BD%D0%B8%20%D2%9B%D0%B0%D1%81%D0%B4%D0%B4%D0%B0%D0%BD%20%D0%B0%D0%BB%D0%B4%D0%B0%D0%B1%20%D1%87%D0%B0%D2%9B%D0%B8%D1%80%D0%B3%D0%B0%D0%BD%D0%BB%D0%B8%D0%BA,-%D0%9E%D0%BB%D0%B4%D0%B8%D0%BD%D0%B3%D0%B8%C2%A0%D1%82%D0%B0%D2%B3%D1%80%D0%B8%D1%80%D0%B3%D0%B0%C2%A0%D2%9B%D0%B0%D1%80%D0%B0%D0%BD%D0%B3</string>
     >
     <string name="str_delete_contact">Kontakt o\'chirilsinmi?</string>
-
+    <string name="str_first_aid">Tez tibbiy yordam</string>
+    <string name="str_first_aid_for">Quyidagi holatlar uchun yordam tibbiy yordam...</string>
+    <string name="str_hypothermia">Gipotermiya</string>
+    <string name="str_meningitis">Meningit</string>
+    <string name="str_poisoning">Zaharlanish/zararli moddalar</string>
+    <string name="str_psychological">Birinchi psixologik yordam</string>
+    <string name="str_seizure">Tutqanoq tutishi</string>
+    <string name="str_stings">Zararkunandalar chaqishi/tishlashi</string>
+    <string name="str_strains">Suyaklar qayrilishi</string>
+    <string name="str_allergies">Allergik holatlar</string>
+    <string name="str_stroke">Insult</string>
+    <string name="str_asthma_attack">Astma xuruji</string>
+    <string name="str_unconscious">Hushini yo\'qotish</string>
+    <string name="str_bleeding">Qon ketishi</string>
+    <string name="str_broken_bone">Suyaklar sinishi</string>
+    <string name="str_burns">Kuyish</string>
+    <string name="str_choking">Tiqilib qolish</string>
+    <string name="str_diabetic_emergency">Qandli diabet</string>
+    <string name="str_distress">Stress holatlari</string>
+    <string name="str_head_injury">Bosh jarohatlari</string>
+    <string name="str_heart_attack">Yurak xuruji</string>
+    <string name="str_heat_stroke">Quyosh urishi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

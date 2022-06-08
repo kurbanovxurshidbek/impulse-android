@@ -22,6 +22,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_et_confirmation.xml" value="0.1675" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_et_registration.xml" value="0.1675" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_icons.xml" value="0.1675" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_ll_aid.xml" value="0.241" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_ll_contact.xml" value="0.1675" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_ll_home.xml" value="0.1675" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/drawable/bg_ll_text.xml" value="0.1675" />
@@ -48,6 +49,8 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_profile.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_reg_date.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_reg_name.xml" value="0.245018115942029" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_aid_head_view.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_aid_view.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_contact_nested_view.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_contact_view.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_home_situation.xml" value="0.24818840579710144" />
