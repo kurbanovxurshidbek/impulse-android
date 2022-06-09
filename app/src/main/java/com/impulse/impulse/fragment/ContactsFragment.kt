@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.ContactItemAdapter
@@ -24,6 +25,9 @@ import com.impulse.impulse.databinding.DialogContactMessageViewBinding
 import com.impulse.impulse.databinding.DialogDeleteMessageBinding
 import com.impulse.impulse.databinding.FragmentContactsBinding
 import com.impulse.impulse.utils.SpacesItemDecoration
+import com.impulse.impulse.viewmodel.ContactsViewModel
+import com.impulse.impulse.viewmodel.factory.ContactsViewModelFactory
+import com.impulse.impulse.viewmodel.repository.ContactRepository
 
 
 class ContactsFragment : BaseFragment() {
@@ -39,6 +43,7 @@ class ContactsFragment : BaseFragment() {
     private lateinit var contactAdapter: ContactItemAdapter
     private lateinit var appDatabase: AppDatabase
     private lateinit var contacts: ArrayList<Contact>
+    private lateinit var viewModel: ContactsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,7 +129,7 @@ class ContactsFragment : BaseFragment() {
     }
 
     private fun saveContactToDatabase(contact: Contact) {
-        appDatabase.contactDao().addContact(contact)
+        viewModel.addContact(contact)
         contacts.add(contact)
         contactAdapter.notifyItemInserted(contacts.size - 1)
         refreshAdapter(contacts)
@@ -132,11 +137,12 @@ class ContactsFragment : BaseFragment() {
 
 
     private fun initViews() {
+        appDatabase = AppDatabase.getInstance(requireActivity())
+        setupViewModel()
         // Intent to pick contacts
         val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
         contacts = ArrayList()
-        appDatabase = AppDatabase.getInstance(requireActivity())
         contacts = appDatabase.contactDao().getAllContacts() as ArrayList<Contact>
 
         binding.apply {
@@ -215,7 +221,7 @@ class ContactsFragment : BaseFragment() {
         val dialog = builder.create()
 
         dialogBinding.btnOk.setOnClickListener {
-            appDatabase.contactDao().deleteContact(contact)
+//            appDatabase.contactDao().deleteContact(contact)
             contacts.remove(contact)
             contactAdapter.notifyItemRemoved(position)
             refreshAdapter(contacts)
@@ -227,6 +233,13 @@ class ContactsFragment : BaseFragment() {
         }
 
         dialog.show()
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            ContactsViewModelFactory(ContactRepository(appDatabase.contactDao()))
+        )[ContactsViewModel::class.java]
     }
 
 }

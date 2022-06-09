@@ -31,5 +31,6 @@ class CurrentLocationFragment : Fragment() {
     }
 
     private fun initViews() {
+
     }
 }
