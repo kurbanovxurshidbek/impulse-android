@@ -1,11 +1,9 @@
 package com.impulse.impulse.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.impulse.impulse.database.model.Contact
+import com.impulse.impulse.data.local.entity.Contact
 import com.impulse.impulse.databinding.ItemContactViewBinding
 import com.impulse.impulse.fragment.ContactsFragment
 

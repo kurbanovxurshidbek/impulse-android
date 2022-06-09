@@ -2,7 +2,6 @@ package com.impulse.impulse.fragment
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -12,9 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.core.view.get
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
@@ -23,8 +19,6 @@ import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
 import com.impulse.impulse.utils.SpacesItemDecoration
-import java.lang.RuntimeException
-import kotlin.math.log
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null

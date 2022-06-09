@@ -1,4 +1,4 @@
-package com.impulse.impulse.database.model
+package com.impulse.impulse.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -9,25 +9,19 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.ContactItemAdapter
-import com.impulse.impulse.database.AppDatabase
-import com.impulse.impulse.database.model.Contact
+import com.impulse.impulse.data.local.AppDatabase
+import com.impulse.impulse.data.local.entity.Contact
 import com.impulse.impulse.databinding.DialogContactMessageViewBinding
 import com.impulse.impulse.databinding.DialogDeleteMessageBinding
-import com.impulse.impulse.databinding.DialogHomeViewBinding
 import com.impulse.impulse.databinding.FragmentContactsBinding
 import com.impulse.impulse.utils.SpacesItemDecoration
 
