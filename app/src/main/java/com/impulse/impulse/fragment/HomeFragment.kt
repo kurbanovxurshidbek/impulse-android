@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
@@ -19,6 +20,8 @@ import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
 import com.impulse.impulse.utils.SpacesItemDecoration
+import com.impulse.impulse.utils.Extensions.toast
+import com.impulse.impulse.utils.Logger
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -27,6 +30,7 @@ class HomeFragment : BaseFragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private var listener: ProfileListener? = null
+    private lateinit var prefsManager: PrefsManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +68,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        prefsManager = PrefsManager.getInstance(requireContext())!!
         binding.apply {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -73,8 +78,13 @@ class HomeFragment : BaseFragment() {
             recyclerView.adapter = HomeItemAdapter(this@HomeFragment, getAllItems())
 
 
+            Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
             btnCall.setOnLongClickListener {
-                setDialog()
+                if (!prefsManager.hasCalled("hasCalled")) {
+                    setDialog()
+                } else {
+                    toast(getString(R.string.str_has_called))
+                }
                 true
             }
 
@@ -121,6 +131,8 @@ class HomeFragment : BaseFragment() {
                     }
                     btnCall.playAnimation()
                     Log.d("@@@", "Home Dialog option : $dialogChosenOption")
+                    prefsManager.setBoolean("hasCalled", true)
+                    Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
                     dialog.dismiss()
                 }
 

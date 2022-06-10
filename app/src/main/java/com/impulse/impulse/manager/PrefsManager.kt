@@ -42,6 +42,11 @@ class PrefsManager private constructor(context: Context) {
         return sharedPreferences?.getBoolean(key, false) ?: false
     }
 
+    // check called or not
+    fun hasCalled(key: String?): Boolean {
+        return sharedPreferences?.getBoolean(key, false) ?: false
+    }
+
     fun saveData(key: String?, value: String?) {
         val prefsEditor = sharedPreferences!!.edit()
         prefsEditor.putString(key, value)
