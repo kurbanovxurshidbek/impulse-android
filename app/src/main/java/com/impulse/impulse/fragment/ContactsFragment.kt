@@ -57,7 +57,7 @@ class ContactsFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+//        _binding = null
     }
 
     @Deprecated("Deprecated in Java")
@@ -221,7 +221,7 @@ class ContactsFragment : BaseFragment() {
         val dialog = builder.create()
 
         dialogBinding.btnOk.setOnClickListener {
-//            appDatabase.contactDao().deleteContact(contact)
+            viewModel.deleteContact(contact)
             contacts.remove(contact)
             contactAdapter.notifyItemRemoved(position)
             refreshAdapter(contacts)

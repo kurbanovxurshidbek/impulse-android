@@ -5,9 +5,9 @@ import com.impulse.impulse.data.local.entity.Contact
 
 class ContactRepository(private val contactDao: ContactDao) {
 
-    suspend fun addContact(contact: Contact) = contactDao.addContact(contact)
+    fun addContact(contact: Contact) = contactDao.addContact(contact)
 //    suspend fun getAllContacts() = contactDao.getAllContacts()
-//    suspend fun deleteContact(contact: Contact) = contactDao.deleteContact(contact)
+    fun deleteContact(contact: Contact) = contactDao.deleteContact(contact)
 
 
 }
