@@ -86,6 +86,10 @@ class HomeFragment : BaseFragment() {
             ivProfile.setOnClickListener {
                 listener!!.scrollToProfile()
             }
+
+            ivLocation.setOnClickListener {
+                openCurrentLocationFragment()
+            }
         }
     }
 
@@ -156,6 +160,15 @@ class HomeFragment : BaseFragment() {
 
     fun openFirstAidFragment() {
         Log.d("@@@", "openFirstAidFragment: touched")
+    }
+
+    private fun openCurrentLocationFragment() {
+        requireActivity()
+            .supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.rootView, CurrentLocationFragment())
+            .addToBackStack("home")
+            .commit()
     }
 
     /*
