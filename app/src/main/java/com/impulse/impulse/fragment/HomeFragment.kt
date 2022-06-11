@@ -87,7 +87,7 @@ class HomeFragment : BaseFragment() {
             )
 
             ivProfile.setOnClickListener {
-                navController.navigate(R.id.homeToProfileFragment)
+                navigateToProfileFragment()
             }
 
             ivLocation.setOnClickListener {
@@ -161,10 +161,6 @@ class HomeFragment : BaseFragment() {
         items.add(HomeItem(getString(R.string.str_injury), R.mipmap.ic_injury))
         items.add(HomeItem(getString(R.string.str_feeling_bad), R.mipmap.ic_feeling_bad))
         return items
-    }
-
-    fun openFirstAidFragment() {
-        navController.navigate(R.id.homeToFirstAidProfile)
     }
 
 //    private fun openCurrentLocationFragment() {
