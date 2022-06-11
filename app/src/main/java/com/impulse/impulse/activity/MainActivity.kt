@@ -14,10 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.ViewPagerAdapter
 import com.impulse.impulse.databinding.ActivityMainBinding
-import com.impulse.impulse.fragment.ContactsFragment
-import com.impulse.impulse.fragment.FirstAidFragment
-import com.impulse.impulse.fragment.HomeFragment
-import com.impulse.impulse.fragment.ProfileFragment
+import com.impulse.impulse.fragment.*
 
 class MainActivity : BaseActivity() {
     private val TAG = MainActivity::class.java.toString()

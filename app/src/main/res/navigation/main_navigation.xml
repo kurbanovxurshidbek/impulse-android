@@ -24,7 +24,9 @@
             app:exitAnim="@anim/fade_out" />
         <action
             android:id="@+id/homeToCurrentLocationFragment"
-            app:destination="@id/currentLocationFragment" />
+            app:destination="@id/currentLocationFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"
