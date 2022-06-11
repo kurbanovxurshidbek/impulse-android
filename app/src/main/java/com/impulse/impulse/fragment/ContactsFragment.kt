@@ -21,6 +21,7 @@ import com.impulse.impulse.R
 import com.impulse.impulse.adapter.ContactItemAdapter
 import com.impulse.impulse.data.local.AppDatabase
 import com.impulse.impulse.data.local.entity.Contact
+import com.impulse.impulse.data.local.entity.Message
 import com.impulse.impulse.databinding.DialogContactMessageViewBinding
 import com.impulse.impulse.databinding.DialogDeleteMessageBinding
 import com.impulse.impulse.databinding.FragmentContactsBinding
@@ -28,6 +29,7 @@ import com.impulse.impulse.utils.SpacesItemDecoration
 import com.impulse.impulse.viewmodel.ContactsViewModel
 import com.impulse.impulse.viewmodel.factory.ContactsViewModelFactory
 import com.impulse.impulse.viewmodel.repository.ContactRepository
+import com.impulse.impulse.viewmodel.repository.MessageRepository
 
 
 class ContactsFragment : BaseFragment() {
@@ -167,6 +169,11 @@ class ContactsFragment : BaseFragment() {
         val dialog = builder.create()
 
         dialogBinding.btnOk.setOnClickListener {
+            val message = Message(dialogBinding.etMsg.text.toString().trim())
+            viewModel.saveMessage(message)
+            dialogBinding.apply {
+                msgContainer.hint = appDatabase.messageDao().getMessage()[0].toString()
+            }
             dialog.dismiss()
         }
 
@@ -181,7 +188,6 @@ class ContactsFragment : BaseFragment() {
         contactAdapter = ContactItemAdapter(this@ContactsFragment, contacts)
         binding.recyclerView.adapter = contactAdapter
     }
-
 
 
     private fun hasContactsPermission(): Boolean {
@@ -228,7 +234,10 @@ class ContactsFragment : BaseFragment() {
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
-            ContactsViewModelFactory(ContactRepository(appDatabase.contactDao()))
+            ContactsViewModelFactory(
+                ContactRepository(appDatabase.contactDao()),
+                MessageRepository(appDatabase.messageDao())
+            )
         )[ContactsViewModel::class.java]
     }
 

@@ -3,13 +3,18 @@ package com.impulse.impulse.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.impulse.impulse.data.local.entity.Contact
+import com.impulse.impulse.data.local.entity.Message
 import com.impulse.impulse.utils.UIStateObject
 import com.impulse.impulse.viewmodel.repository.ContactRepository
+import com.impulse.impulse.viewmodel.repository.MessageRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class ContactsViewModel(private val repository: ContactRepository) : ViewModel() {
+class ContactsViewModel(
+    private val repository: ContactRepository,
+    private val messageRepository: MessageRepository
+) : ViewModel() {
 
     private val _newsState = MutableStateFlow<UIStateObject<Contact>>(UIStateObject.EMPTY)
     val newsState = _newsState
@@ -31,5 +36,13 @@ class ContactsViewModel(private val repository: ContactRepository) : ViewModel()
 
     fun deleteContact(deleteContact: Contact) = viewModelScope.launch {
         repository.deleteContact(deleteContact)
+    }
+
+    fun saveMessage(message: Message) = viewModelScope.launch {
+        messageRepository.addMessage(message)
+    }
+
+    fun deleteMessage(message: Message) = viewModelScope.launch {
+        messageRepository.deleteMessage(message)
     }
 }

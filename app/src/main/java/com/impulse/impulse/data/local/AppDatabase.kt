@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.impulse.impulse.data.local.dao.ContactDao
+import com.impulse.impulse.data.local.dao.MessageDao
 import com.impulse.impulse.data.local.entity.Contact
+import com.impulse.impulse.data.local.entity.Message
 
-@Database(entities = [Contact::class], version = 1)
+@Database(entities = [Contact::class, Message::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun contactDao(): ContactDao
+    abstract fun messageDao(): MessageDao
 
     companion object {
         private var instance: AppDatabase? = null

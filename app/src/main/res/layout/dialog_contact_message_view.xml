@@ -18,13 +18,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/msgPartOneContainer"
+        android:id="@+id/msgContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="@string/str_enter_message"
         app:boxStrokeWidth="0dp"
-        app:helperText="@string/str_part_one_message"
+        app:helperText="@string/str_message_with_location"
         app:helperTextEnabled="true"
         app:helperTextTextColor="@color/helper_text_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,31 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvDialog">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMessagePartOne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_et_registration"
-            android:imeOptions="actionNext"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/msgPartTwoContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="@string/str_enter_message"
-        app:boxStrokeWidth="0dp"
-        app:helperText="@string/str_part_two_message"
-        app:helperTextEnabled="true"
-        app:helperTextTextColor="@color/helper_text_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/msgPartOneContainer">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMessagePartTwo"
+            android:id="@+id/etMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_et_registration"
@@ -72,7 +48,7 @@
         android:layout_marginVertical="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/msgPartTwoContainer">
+        app:layout_constraintTop_toBottomOf="@id/msgContainer">
 
         <LinearLayout
             android:layout_width="match_parent"
