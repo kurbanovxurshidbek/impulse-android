@@ -1,273 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/white"
-    android:layout_height="match_parent"
-    tools:context=".fragment.ProfileFragment">
-    
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="10dp"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp">
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".fragment.ProfileFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:src="@drawable/ic_profile" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_profile_data"
-                android:textSize="16sp"
-                android:layout_marginLeft="2dp"
-                android:textColor="@color/black"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="right|center_vertical"
-                android:layout_marginRight="10dp">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_profile" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_edit"
-                    android:textSize="16sp"
-                    android:textColor="@color/main_red"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginLeft="2dp"
+                    android:text="@string/str_profile_data"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_edit"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right|center_vertical">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/str_edit"
+                        android:textColor="@color/main_red"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/ivEdit"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_edit" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal|center_vertical"
-            android:layout_marginTop="20dp">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/pfImage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:shapeAppearanceOverlay="@style/corner"
-                android:src="@drawable/img_defoult"/>
-
-            <TextView
-                android:id="@+id/tName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Abduvaliyev Saidmurod"
-                android:layout_marginTop="15dp"
-                android:textSize="23sp"
-                android:singleLine="true"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-        </LinearLayout>
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#ECECEC"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="15dp">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/str_age"
-                            android:textSize="16sp"
-                            android:layout_marginTop="1dp"/>
-
-                        <TextView
-                            android:id="@+id/tAge"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="bottom"
-                            android:text="28 years"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="24sp"/>
-
-                        <ImageView
-                            android:layout_width="23dp"
-                            android:layout_height="23dp"
-                            android:src="@drawable/ic_age"
-                            android:layout_gravity="right"/>
-
-
-                    </FrameLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="2dp"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/pfImage"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="#ECECEC"/>
+                    android:src="@drawable/img_defoult"
+                    app:shapeAppearanceOverlay="@style/corner" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="15dp">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/str_blood_type"
-                            android:textSize="16sp"
-                            android:layout_marginTop="1dp"/>
-
-                        <TextView
-                            android:id="@+id/tBloodtype"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="bottom"
-                            android:text="ORh+"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="24sp"/>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_bloodtype"
-                            android:layout_gravity="right"/>
-
-
-                    </FrameLayout>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#ECECEC"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="15dp">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/str_height"
-                            android:textSize="16sp"
-                            android:layout_marginTop="1dp"/>
-
-                        <TextView
-                            android:id="@+id/tHeight"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="bottom"
-                            android:text="176 cm"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="24sp"/>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_height"
-                            android:layout_gravity="right"/>
-
-
-                    </FrameLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="2dp"
-                    android:layout_height="100dp"
-                    android:background="#ECECEC"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="15dp">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/str_weight"
-                            android:textSize="16sp"
-                            android:layout_marginTop="1dp"/>
-
-                        <TextView
-                            android:id="@+id/tWeight"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="bottom"
-                            android:text="85 kg"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="24sp"/>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_weight"
-                            android:layout_gravity="right"/>
-
-
-                    </FrameLayout>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:singleLine="true"
+                    android:text="Abduvaliyev Saidmurod"
+                    android:textColor="@color/black"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#ECECEC"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
 
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#ECECEC" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="1dp"
+                                android:text="@string/str_age"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/tAge"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="5dp"
+                                android:gravity="bottom"
+                                android:text="28 years"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
+                                android:layout_gravity="right"
+                                android:src="@drawable/ic_age" />
+
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="2dp"
+                        android:layout_height="100dp"
+                        android:background="#ECECEC" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="1dp"
+                                android:text="@string/str_blood_type"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/tBloodtype"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="5dp"
+                                android:gravity="bottom"
+                                android:text="ORh+"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:src="@drawable/ic_bloodtype" />
+
+
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#ECECEC" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="1dp"
+                                android:text="@string/str_height"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/tHeight"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="5dp"
+                                android:gravity="bottom"
+                                android:text="176 cm"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:src="@drawable/ic_height" />
+
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="2dp"
+                        android:layout_height="100dp"
+                        android:background="#ECECEC" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="1dp"
+                                android:text="@string/str_weight"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/tWeight"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="5dp"
+                                android:gravity="bottom"
+                                android:text="85 kg"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:src="@drawable/ic_weight" />
+
+
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#ECECEC" />
+
+
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>

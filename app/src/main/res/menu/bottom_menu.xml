@@ -2,27 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/homeFragment"
         android:icon="@mipmap/ic_home"
-        android:menuCategory="secondary"
         android:title="" />
 
     <item
-        android:id="@+id/navigation_contacts"
+        android:id="@+id/contactsFragment"
         android:icon="@mipmap/ic_contacts"
-        android:menuCategory="secondary"
         android:title="" />
 
     <item
-        android:id="@+id/navigation_firstAid"
+        android:id="@+id/firstAidFragment"
         android:icon="@mipmap/ic_medical"
-        android:menuCategory="secondary"
         android:title="" />
 
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/profileFragment"
         android:icon="@mipmap/ic_person"
-        android:menuCategory="secondary"
         android:title="" />
 
 

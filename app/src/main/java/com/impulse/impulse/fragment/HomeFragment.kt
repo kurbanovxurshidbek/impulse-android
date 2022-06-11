@@ -11,7 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
@@ -29,8 +33,8 @@ class HomeFragment : BaseFragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private var listener: ProfileListener? = null
     private lateinit var prefsManager: PrefsManager
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,24 +51,9 @@ class HomeFragment : BaseFragment() {
         _binding = null
     }
 
-    /*
-    * onAttach is for communication of Fragments
-    * */
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = if (context is ProfileListener) {
-            context
-        } else {
-            throw RuntimeException("$context must implement ProfileListener")
-        }
-    }
-
-    /*
-    * onDetach is for communication of Fragments
-    * */
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
     }
 
     private fun initViews() {
@@ -88,17 +77,21 @@ class HomeFragment : BaseFragment() {
                 true
             }
 
+            btnCall.setOnClickListener {
+                toast(getString(R.string.str_press_and_hold))
+            }
+
             tvName.text = getString(
                 R.string.str_hello_name,
                 PrefsManager.getInstance(requireContext())!!.getData("userName")
             )
 
             ivProfile.setOnClickListener {
-                listener!!.scrollToProfile()
+                navController.navigate(R.id.homeToProfileFragment)
             }
 
             ivLocation.setOnClickListener {
-                openCurrentLocationFragment()
+                navController.navigate(R.id.homeToCurrentLocationFragment)
             }
         }
     }
@@ -171,22 +164,15 @@ class HomeFragment : BaseFragment() {
     }
 
     fun openFirstAidFragment() {
-        Log.d("@@@", "openFirstAidFragment: touched")
+        navController.navigate(R.id.homeToFirstAidProfile)
     }
 
-    private fun openCurrentLocationFragment() {
-        requireActivity()
-            .supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.rootView, CurrentLocationFragment())
-            .addToBackStack("home")
-            .commit()
-    }
-
-    /*
-    * This interface is created for communication with ProfileFragment
-    * */
-    interface ProfileListener {
-        fun scrollToProfile()
-    }
+//    private fun openCurrentLocationFragment() {
+//        requireActivity()
+//            .supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.rootView, CurrentLocationFragment())
+//            .addToBackStack("home")
+//            .commit()
+//    }
 }

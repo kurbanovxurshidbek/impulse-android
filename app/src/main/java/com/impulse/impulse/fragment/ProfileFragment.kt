@@ -5,6 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.impulse.impulse.R
 import com.impulse.impulse.databinding.FragmentProfileBinding
 
 
@@ -15,6 +19,8 @@ class ProfileFragment : BaseFragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +37,11 @@ class ProfileFragment : BaseFragment() {
         _binding = null
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+    }
+
     private fun initViews() {
         binding.apply {
             tName.text = "name"
@@ -38,6 +49,14 @@ class ProfileFragment : BaseFragment() {
             tWeight.text = "176 cm"
             tHeight.text = "58 kg"
             tBloodtype.text = "Orh+"
+
+            ivEdit.setOnClickListener {
+                openEditProfileFragment()
+            }
         }
+    }
+
+    private fun openEditProfileFragment() {
+        navController.navigate(R.id.profileToEditProfileFragment)
     }
 }

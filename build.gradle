@@ -2,7 +2,8 @@
 buildscript {
     ext {
         corountine_version = "1.5.1"
-        roomVersion = "2.3.0"
+        roomVersion = "2.4.2"
+        navVersion = "2.4.2"
     }
     repositories {
         // Check that you have the following line (if not, add it):
@@ -12,7 +13,7 @@ buildscript {
     dependencies {
         // Add this line
         classpath 'com.google.gms:google-services:4.3.10'
-
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion")
     }
 }
 

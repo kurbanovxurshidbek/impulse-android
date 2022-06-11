@@ -22,7 +22,6 @@ class FirstAidFragment : BaseFragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private var listener: HomeListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,36 +31,6 @@ class FirstAidFragment : BaseFragment() {
         val view = binding.root
         initViews()
         return view
-    }
-
-    /*
-    * onAttach is for communication of Fragments
-    * */
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = if (context is HomeListener) {
-            context
-        } else {
-            throw RuntimeException("$context must implement ProfileListener")
-        }
-    }
-
-    /*
-    * onDetach is for communication of Fragments
-    * */
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    listener!!.scrollToHome()
-                }
-            })
     }
 
     override fun onDestroyView() {
@@ -105,10 +74,4 @@ class FirstAidFragment : BaseFragment() {
         return items
     }
 
-    /*
-    * This interface is created for communication with HomeFragment when back pressed
-    * */
-    interface HomeListener {
-        fun scrollToHome()
-    }
 }

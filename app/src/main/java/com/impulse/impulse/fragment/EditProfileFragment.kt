@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.impulse.impulse.R
+import com.impulse.impulse.databinding.FragmentEditProfileBinding
 import com.impulse.impulse.databinding.FragmentProfileBinding
 
 class EditProfileFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentEditProfileBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -20,7 +21,7 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         val view = binding.root
         initViews()
         return view
