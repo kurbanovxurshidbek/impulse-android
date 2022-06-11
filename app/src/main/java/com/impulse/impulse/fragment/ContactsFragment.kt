@@ -55,11 +55,6 @@ class ContactsFragment : BaseFragment() {
         return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-//        _binding = null
-    }
-
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String?>,
@@ -187,12 +182,7 @@ class ContactsFragment : BaseFragment() {
         binding.recyclerView.adapter = contactAdapter
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        if (isVisibleToUser) {
-            refreshAdapter(contacts)
-        }
-    }
+
 
     private fun hasContactsPermission(): Boolean {
         return ContextCompat.checkSelfPermission(

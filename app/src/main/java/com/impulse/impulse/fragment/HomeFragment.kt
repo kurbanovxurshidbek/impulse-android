@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -54,7 +55,25 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        setBackDoubleBackPressed()
     }
+
+    private fun setBackDoubleBackPressed() {
+        var backPressedTime: Long = 0
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (backPressedTime + 3000 > System.currentTimeMillis()) {
+                        activity!!.finish()
+                    } else {
+                        toast(getString(R.string.str_double_tap_to_exit))
+                    }
+                    backPressedTime = System.currentTimeMillis()
+                }
+            })
+    }
+
 
     private fun initViews() {
         prefsManager = PrefsManager.getInstance(requireContext())!!
@@ -162,13 +181,4 @@ class HomeFragment : BaseFragment() {
         items.add(HomeItem(getString(R.string.str_feeling_bad), R.mipmap.ic_feeling_bad))
         return items
     }
-
-//    private fun openCurrentLocationFragment() {
-//        requireActivity()
-//            .supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.rootView, CurrentLocationFragment())
-//            .addToBackStack("home")
-//            .commit()
-//    }
 }

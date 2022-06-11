@@ -91,6 +91,7 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_heat_stroke">Quyosh urishi</string>
     <string name="str_has_called">Siz allaqachon tez yordam chaqirgansiz</string>
     <string name="str_press_and_hold">Tugmani bosing va ushlab turing</string>
+    <string name="str_double_tap_to_exit">Chiqish uchun ikki marta bosing</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
