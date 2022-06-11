@@ -94,4 +94,10 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+<!--    For map use key-->
+    <string name="google_maps_key">AIzaSyArtvZuAVTJNY74sqLojOlnI3mQnyZGo7c</string>
+    <string name="no_location_data_provided">no_location_data_provided</string>
+    <string name="service_not_available">service_not_available</string>
+    <string name="invalid_lat_long_used">invalid_lat_long_used</string>
+    <string name="address_found">address_found</string>
 </resources>
