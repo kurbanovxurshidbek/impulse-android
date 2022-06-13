@@ -19,9 +19,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/homeToFirstAidProfile"
-            app:destination="@id/firstAidFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out" />
+            app:destination="@id/firstAidFragment" />
         <action
             android:id="@+id/homeToCurrentLocationFragment"
             app:destination="@id/currentLocationFragment"
@@ -42,7 +40,7 @@
         android:id="@+id/profileFragment"
         android:name="com.impulse.impulse.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/profileToEditProfileFragment"
             app:destination="@id/editProfileFragment2" />

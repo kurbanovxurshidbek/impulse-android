@@ -45,7 +45,7 @@ class CurrentLocationFragment : Fragment(), OnMapReadyCallback {
     private val TAG: String = "MAIN_ACTIVITY"
     private var driverMarker: Marker? = null
     private var _binding: FragmentCurrentLocationBinding? = null
-    var currentLocation : Location? = null
+    var currentLocation: Location? = null
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
     val REQUEST_CODE = 101
     private val binding get() = _binding!!
@@ -53,7 +53,7 @@ class CurrentLocationFragment : Fragment(), OnMapReadyCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View{
+    ): View {
         _binding = FragmentCurrentLocationBinding.inflate(inflater, container, false)
         val view = binding.root
         initViews()
@@ -67,14 +67,16 @@ class CurrentLocationFragment : Fragment(), OnMapReadyCallback {
 
     private fun initViews() {
         /** Check permission Internet **/
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
         if (InternetPermission.isInternetAvailable(requireContext().applicationContext)) {
             fetchLocation()
-        }else {
-            Toast.makeText(requireContext(),"Internet ulanmagan",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Internet ulanmagan", Toast.LENGTH_SHORT).show()
         }
 
-        mapFragment = childFragmentManager.findFragmentById(com.impulse.impulse.R.id.map_user) as SupportMapFragment
+        mapFragment =
+            childFragmentManager.findFragmentById(com.impulse.impulse.R.id.map_user) as SupportMapFragment
     }
 
 
@@ -116,7 +118,7 @@ class CurrentLocationFragment : Fragment(), OnMapReadyCallback {
 
                         gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17.0f))
                     }
-                }else {
+                } else {
                     fetchLocation()
                 }
             }
@@ -130,29 +132,44 @@ class CurrentLocationFragment : Fragment(), OnMapReadyCallback {
     /** without a call to see the location **/
 
     private fun fetchLocation() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(),Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_CODE
+            )
             return
         }
 
         val task = fusedLocationProviderClient!!.lastLocation
         task.addOnSuccessListener { location ->
-            if (location != null){
+            if (location != null) {
                 currentLocation = location
-                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+                fusedLocationProviderClient =
+                    LocationServices.getFusedLocationProviderClient(requireActivity())
                 mapFragment!!.getMapAsync(this)
             }
         }
     }
 
     /** to use the allowed map **/
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
             REQUEST_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     fetchLocation()
                 }
             }
@@ -166,10 +183,11 @@ class CurrentLocationFragment : Fragment(), OnMapReadyCallback {
         val markerOptions = MarkerOptions().position(latLng).title("I Am Here!")
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.current))
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15f))
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         googleMap.addMarker(markerOptions)
     }
 }
+
 /** two distance detection **/
 fun bearingBetweenLocations(latLng1: LatLng, latLng2: LatLng): Double {
     val lat1 = latLng1.latitude

@@ -1,6 +1,5 @@
 package com.impulse.impulse.fragment
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,13 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
@@ -24,9 +20,9 @@ import com.impulse.impulse.databinding.DialogHomeViewBinding
 import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
-import com.impulse.impulse.utils.SpacesItemDecoration
 import com.impulse.impulse.utils.Extensions.toast
 import com.impulse.impulse.utils.Logger
+import com.impulse.impulse.utils.SpacesItemDecoration
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null

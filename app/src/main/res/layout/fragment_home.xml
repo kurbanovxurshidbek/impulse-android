@@ -65,8 +65,8 @@
 
                         <ImageView
                             android:id="@+id/ivLocation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:src="@mipmap/ic_place"
                             app:tint="@color/main_red" />
 
