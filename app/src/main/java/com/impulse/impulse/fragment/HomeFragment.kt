@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,15 +24,19 @@ import com.impulse.impulse.model.HomeItem
 import com.impulse.impulse.utils.Extensions.toast
 import com.impulse.impulse.utils.Logger
 import com.impulse.impulse.utils.SpacesItemDecoration
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
+    private var job: Job? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var prefsManager: PrefsManager
     private lateinit var navController: NavController
+    private var clickCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +51,7 @@ class HomeFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        job?.cancel()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,11 +95,23 @@ class HomeFragment : BaseFragment() {
                 } else {
                     toast(getString(R.string.str_has_called))
                 }
+
+                setDialog()
                 true
             }
 
             btnCall.setOnClickListener {
-                toast(getString(R.string.str_press_and_hold))
+
+                job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                    if (clickCount < 2) {
+                        toast(getString(R.string.str_press_and_hold))
+                    } else {
+                        delay(5000)
+                        clickCount = 0
+                    }
+                }
+
+                clickCount++
             }
 
             tvName.text = getString(
@@ -127,6 +145,8 @@ class HomeFragment : BaseFragment() {
                 rbHardest.setOnClickListener { btnOk.isEnabled = true }
 
                 btnOk.setOnClickListener {
+                    btnImpulse.visibility = View.VISIBLE
+                    btnClick.visibility = View.GONE
                     if (rgHome.checkedRadioButtonId == -1) {
                         //
                     } else {
@@ -138,6 +158,7 @@ class HomeFragment : BaseFragment() {
                         dialogChosenOption = r.text.toString()
                     }
                     btnCall.playAnimation()
+                    btnImpulse.playAnimation()
                     Log.d("@@@", "Home Dialog option : $dialogChosenOption")
                     prefsManager.setBoolean("hasCalled", true)
                     Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
