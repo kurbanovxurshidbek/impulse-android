@@ -12,6 +12,7 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -169,9 +170,16 @@ class ContactsFragment : BaseFragment() {
         builder.setView(dialogBinding.root)
         val dialog = builder.create()
 
-        if (appDatabase.messageDao().getMessage() != null) {
-            dialogBinding.msgContainer.hint =
-                appDatabase.messageDao().getMessage().message!!
+        if (appDatabase.messageDao().getMessage() != null &&
+            appDatabase.messageDao().getMessage().message!!.trim() != ""
+        ) {
+            dialogBinding.apply {
+                msgContainer.hint = ""
+                etMsg.setText(
+                    appDatabase.messageDao().getMessage().message,
+                    TextView.BufferType.EDITABLE
+                )
+            }
         } else {
             dialogBinding.msgContainer.hint = getString(R.string.str_enter_message)
         }

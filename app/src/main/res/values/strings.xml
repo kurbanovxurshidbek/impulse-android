@@ -34,7 +34,7 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_not_sure">Nima qilishni bilmaysizmi?</string>
     <string name="str_pick_subject">Yordam olish uchun mavzuni tanlang</string>
     <string name="str_hello_name">Salom %s</string>
-    <string name="str_see_location">Manzilingizni ko\'ring</string>
+    <string name="str_see_location">Manzil</string>
     <string name="str_sms_sending_contacts">Xabar yuboriladigan kontaktlar ro\'yxati</string>
     <string name="str_contacts">Kontaktlar</string>
     <string name="str_add">Qo\'shish</string>
