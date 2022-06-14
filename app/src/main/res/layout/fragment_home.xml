@@ -93,14 +93,16 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
+                <TextView
+                    android:id="@+id/tvEmergency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_help_needed"
                     android:textColor="@color/black"
                     android:textSize="35sp" />
 
-                <com.google.android.material.textview.MaterialTextView
+                <TextView
+                    android:id="@+id/tvHoldButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

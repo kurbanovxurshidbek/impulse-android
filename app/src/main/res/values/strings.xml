@@ -91,6 +91,8 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_has_called">Tez yordam chaqirilgan</string>
     <string name="str_press_and_hold">Tugmani bosing va ushlab turing</string>
     <string name="str_double_tap_to_exit">Chiqish uchun ikki marta bosing</string>
+    <string name="str_emergency_coming">Tez yordam yo\'lda</string>
+    <string name="str_dont_panic">Vahima qilmang!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

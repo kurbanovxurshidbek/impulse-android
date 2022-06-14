@@ -79,6 +79,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initViews() {
         prefsManager = PrefsManager.getInstance(requireContext())!!
+        val hasCalled = prefsManager.hasCalled("hasCalled")
         binding.apply {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -88,15 +89,14 @@ class HomeFragment : BaseFragment() {
             recyclerView.adapter = HomeItemAdapter(this@HomeFragment, getAllItems())
 
 
-            Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
             btnCall.setOnLongClickListener {
-                if (!prefsManager.hasCalled("hasCalled")) {
+                if (!hasCalled) {
                     setDialog()
+                    setTextMainTexts(hasCalled)
                 } else {
+                    prefsManager.setBoolean("hasCalled", false)
                     toast(getString(R.string.str_has_called))
                 }
-
-                setDialog()
                 true
             }
 
@@ -125,6 +125,18 @@ class HomeFragment : BaseFragment() {
 
             ivLocation.setOnClickListener {
                 navController.navigate(R.id.homeToCurrentLocationFragment)
+            }
+        }
+    }
+
+    private fun setTextMainTexts(hasCalled: Boolean) {
+        binding.apply {
+            if (!hasCalled) {
+                tvEmergency.text = getString(R.string.str_emergency_coming)
+                tvHoldButton.text = getString(R.string.str_dont_panic)
+            } else {
+                tvEmergency.text = getString(R.string.str_help_needed)
+                tvHoldButton.text = getString(R.string.str_hold_button)
             }
         }
     }
@@ -161,7 +173,6 @@ class HomeFragment : BaseFragment() {
                     btnImpulse.playAnimation()
                     Log.d("@@@", "Home Dialog option : $dialogChosenOption")
                     prefsManager.setBoolean("hasCalled", true)
-                    Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
                     dialog.dismiss()
                 }
 
