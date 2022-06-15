@@ -64,7 +64,7 @@ class CurrentLocationFragment : Fragment(),GoogleMap.OnMarkerClickListener, Goog
     private var driverMarker: Marker? = null
     private var driverMarkerSecond: Marker? = null
     private var _binding: FragmentCurrentLocationBinding? = null
-    var currentLocation : Location? = null
+    var currentLocation: Location? = null
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
     val REQUEST_CODE = 101
     private val binding get() = _binding!!
@@ -95,14 +95,14 @@ class CurrentLocationFragment : Fragment(),GoogleMap.OnMarkerClickListener, Goog
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View{
+    ): View {
         _binding = FragmentCurrentLocationBinding.inflate(inflater, container, false)
         val view = binding.root
         initViews()
         mapFragment?.getMapAsync { googleMap ->
             this.googleMap = googleMap
-//            fetchLocation()
-//            listenLocationOfDriver()
+            fetchLocation()
+            listenLocationOfDriver()
             if (InternetPermission.isInternetAvailable(requireContext().applicationContext)) {
                 fetchLocation()
                 listenLocationOfDriver()
@@ -168,6 +168,17 @@ class CurrentLocationFragment : Fragment(),GoogleMap.OnMarkerClickListener, Goog
             mapFragment = childFragmentManager.findFragmentById(com.impulse.impulse.R.id.relative) as SupportMapFragment
 
         }
+        /** Check permission Internet **/
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
+        if (InternetPermission.isInternetAvailable(requireContext().applicationContext)) {
+            fetchLocation()
+        } else {
+            Toast.makeText(requireContext(), "Internet ulanmagan", Toast.LENGTH_SHORT).show()
+        }
+
+        mapFragment =
+            childFragmentManager.findFragmentById(com.impulse.impulse.R.id.relative) as SupportMapFragment
     }
 
     override fun onMapClick(point: LatLng) {
@@ -184,14 +195,28 @@ class CurrentLocationFragment : Fragment(),GoogleMap.OnMarkerClickListener, Goog
         return false
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.i(TAG, "onRequestPermissionResult")
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            when {
-                grantResults.isEmpty() -> Log.i(TAG, "User interaction was cancelled.") // grantResults.length > 0
-                grantResults[0] == PackageManager.PERMISSION_GRANTED -> fetchLocation()
-                else ->  { requestPermission() }
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        Log.i(TAG, "onRequestPermissionResult")
+//        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+//            when {
+//                grantResults.isEmpty() -> Log.i(TAG, "User interaction was cancelled.") // grantResults.length > 0
+//                grantResults[0] == PackageManager.PERMISSION_GRANTED -> fetchLocation()
+//                else ->  { requestPermission() }
+//            }
+//        }
+//    }
+    /** to use the allowed map **/
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            REQUEST_CODE -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    fetchLocation()
+                }
             }
         }
     }
@@ -288,26 +313,99 @@ class CurrentLocationFragment : Fragment(),GoogleMap.OnMarkerClickListener, Goog
         }
     }
 
-    /** without a call to see the location **/
-
-    private fun fetchLocation() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(),Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
-            return
+    internal var isMarkerRotating = false
+    fun rotateMarker(marker: Marker, toRotation: Float) {
+        if (!isMarkerRotating) {
+            val handler = Handler(Looper.getMainLooper())
+            val start = SystemClock.uptimeMillis()
+            val startRotation = marker.rotation
+            val duration: Long = 1000
+            val interpolator = LinearInterpolator()
+            handler.post(object : Runnable {
+                override fun run() {
+                    isMarkerRotating = true
+                    val elapsed = SystemClock.uptimeMillis() - start
+                    val t = interpolator.getInterpolation(elapsed.toFloat() / duration)
+                    val rot = t * toRotation + (1 - t) * startRotation
+                    marker.rotation = if (-rot > 180) rot / 2 else rot
+                    if (t < 1.0) {
+                        handler.postDelayed(this, 26)
+                    } else {
+                        isMarkerRotating = false
+                    }
+                }
+            })
         }
+    }
 
-        val task = fusedLocationProviderClient!!.lastLocation
-        task.addOnSuccessListener { location ->
-            if (location != null){
-                currentLocation = location
-                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-                mapFragment!!.getMapAsync(this)
+    internal var isDriverMarkerMoving = false
+    fun animateMarker(
+        googleMap: GoogleMap,
+        driverMarker: Marker,
+        toPosition: LatLng,
+        hideMarker: Boolean,
+    ) {
+        if (!isDriverMarkerMoving) {
+            val start = SystemClock.uptimeMillis()
+            val proj = googleMap.projection
+            val startPoint = proj.toScreenLocation(driverMarker.position)
+            val startLatLng = proj.fromScreenLocation(startPoint)
+            val duration: Long = 2000
 
-            }
+            val interpolator = LinearInterpolator()
+
+            val driverMarkerHandler = Handler(Looper.getMainLooper())
+            driverMarkerHandler.post(object : Runnable {
+                override fun run() {
+                    isDriverMarkerMoving = true
+                    val elapsed = SystemClock.uptimeMillis() - start
+                    val t = interpolator.getInterpolation(elapsed.toFloat() / duration)
+                    val lng = t * toPosition.longitude + (1 - t) * startLatLng.longitude
+                    val lat = t * toPosition.latitude + (1 - t) * startLatLng.latitude
+                    driverMarker.position = LatLng(lat, lng)
+
+                    if (t < 1.0) {
+                        driverMarkerHandler.postDelayed(this, 16)
+                    } else {
+                        driverMarker.isVisible = !hideMarker
+                        isDriverMarkerMoving = false
+                    }
+                }
+            })
         }
+    }
+
+    /** two distance detection **/
+    fun bearingBetweenLocations(latLng1: LatLng, latLng2: LatLng): Double {
+        val lat1 = latLng1.latitude
+        val lng1 = latLng1.longitude
+        val lat2 = latLng2.latitude
+        val lng2 = latLng2.longitude
+        val fLat: Double = degreeToRadians(lat1)
+        val fLong: Double = degreeToRadians(lng1)
+        val tLat: Double = degreeToRadians(lat2)
+        val tLong: Double = degreeToRadians(lng2)
+        val dLon = tLong - fLong
+        val degree: Double = radiansToDegree(
+            atan2(
+                sin(dLon) * cos(tLat),
+                cos(fLat) * sin(tLat) - sin(fLat) * cos(tLat) * cos(dLon)
+            )
+        )
+        return if (degree >= 0) {
+            degree
+        } else {
+            360 + degree
+        }
+    }
+
+    /** to move the icon in the address **/
+    private fun degreeToRadians(latLong: Double): Double {
+        return Math.PI * latLong / 180.0
+    }
+
+    private fun radiansToDegree(latLong: Double): Double {
+        return latLong * 180.0 / Math.PI
     }
 
     /** map ready mode **/
@@ -318,6 +416,7 @@ class CurrentLocationFragment : Fragment(),GoogleMap.OnMarkerClickListener, Goog
         setupMap()
         Log.d("Tayyor","Tayyor")
     }
+
 
     private fun setupMap() {
         if (ActivityCompat.checkSelfPermission(requireContext(),Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -335,101 +434,6 @@ class CurrentLocationFragment : Fragment(),GoogleMap.OnMarkerClickListener, Goog
         }
     }
 
-    /** two distance detection **/
-fun bearingBetweenLocations(latLng1: LatLng, latLng2: LatLng): Double {
-    val lat1 = latLng1.latitude
-    val lng1 = latLng1.longitude
-    val lat2 = latLng2.latitude
-    val lng2 = latLng2.longitude
-    val fLat: Double = degreeToRadians(lat1)
-    val fLong: Double = degreeToRadians(lng1)
-    val tLat: Double = degreeToRadians(lat2)
-    val tLong: Double = degreeToRadians(lng2)
-    val dLon = tLong - fLong
-    val degree: Double = radiansToDegree(
-        atan2(
-            sin(dLon) * cos(tLat),
-            cos(fLat) * sin(tLat) - sin(fLat) * cos(tLat) * cos(dLon)
-        )
-    )
-    return if (degree >= 0) {
-        degree
-    } else {
-        360 + degree
-    }
-}
-
-/** to move the icon in the address **/
-private fun degreeToRadians(latLong: Double): Double {
-    return Math.PI * latLong / 180.0
-}
-
-private fun radiansToDegree(latLong: Double): Double {
-    return latLong * 180.0 / Math.PI
-}
-
-internal var isMarkerRotating = false
-fun rotateMarker(marker: Marker, toRotation: Float) {
-    if (!isMarkerRotating) {
-        val handler = Handler(Looper.getMainLooper())
-        val start = SystemClock.uptimeMillis()
-        val startRotation = marker.rotation
-        val duration: Long = 1000
-        val interpolator = LinearInterpolator()
-        handler.post(object : Runnable {
-            override fun run() {
-                isMarkerRotating = true
-                val elapsed = SystemClock.uptimeMillis() - start
-                val t = interpolator.getInterpolation(elapsed.toFloat() / duration)
-                val rot = t * toRotation + (1 - t) * startRotation
-                marker.rotation = if (-rot > 180) rot / 2 else rot
-                if (t < 1.0) {
-                    handler.postDelayed(this, 26)
-                } else {
-                    isMarkerRotating = false
-                }
-            }
-        })
-    }
-}
-
-internal var isDriverMarkerMoving = false
-fun animateMarker(
-    googleMap: GoogleMap,
-    driverMarker: Marker,
-    toPosition: LatLng,
-    hideMarker: Boolean,
-) {
-    if (!isDriverMarkerMoving) {
-        val start = SystemClock.uptimeMillis()
-        val proj = googleMap.projection
-        val startPoint = proj.toScreenLocation(driverMarker.position)
-        val startLatLng = proj.fromScreenLocation(startPoint)
-        val duration: Long = 2000
-
-        val interpolator = LinearInterpolator()
-
-        val driverMarkerHandler = Handler(Looper.getMainLooper())
-        driverMarkerHandler.post(object : Runnable {
-            override fun run() {
-                isDriverMarkerMoving = true
-                val elapsed = SystemClock.uptimeMillis() - start
-                val t = interpolator.getInterpolation(elapsed.toFloat() / duration)
-                val lng = t * toPosition.longitude + (1 - t) * startLatLng.longitude
-                val lat = t * toPosition.latitude + (1 - t) * startLatLng.latitude
-                driverMarker.position = LatLng(lat, lng)
-
-                if (t < 1.0) {
-                    driverMarkerHandler.postDelayed(this, 16)
-                } else {
-                    driverMarker.isVisible = !hideMarker
-                    isDriverMarkerMoving = false
-                }
-            }
-        })
-    }
-}
-
     override fun onConnected(p0: Bundle?) {
         if (!enabled!!) {
             val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -443,4 +447,39 @@ fun animateMarker(
 
     override fun onConnectionFailed(p0: ConnectionResult) {
     }
+
+
+    /** without a call to see the location **/
+
+    private fun fetchLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_CODE
+            )
+            return
+        }
+
+        val task = fusedLocationProviderClient!!.lastLocation
+        task.addOnSuccessListener { location ->
+            if (location != null) {
+                currentLocation = location
+                fusedLocationProviderClient =
+                    LocationServices.getFusedLocationProviderClient(requireActivity())
+                mapFragment!!.getMapAsync(this)
+
+            }
+        }
+    }
 }
+
