@@ -38,7 +38,17 @@
                             android:layout_height="35dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_profile"
+                            android:tint="@color/main_red"
+                            android:visibility="gone"
                             app:shapeAppearanceOverlay="@style/corner" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottieProfile"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_fileName="profile_home.json"
+                            app:lottie_loop="false" />
 
                         <TextView
                             android:id="@+id/tvName"
@@ -47,7 +57,7 @@
                             android:layout_marginStart="5dp"
                             android:text="@string/str_hello_name"
                             android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -56,19 +66,13 @@
                         android:layout_height="match_parent"
                         android:gravity="end|center">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str_see_location"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
-
-                        <ImageView
+                        <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/ivLocation"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_place"
-                            app:tint="@color/main_red" />
+                            app:lottie_autoPlay="true"
+                            app:lottie_fileName="location_home.json"
+                            app:lottie_loop="false" />
 
                     </LinearLayout>
 

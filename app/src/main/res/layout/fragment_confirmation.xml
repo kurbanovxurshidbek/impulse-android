@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainConfirmation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="20dp"
@@ -40,6 +41,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/bg_et_confirmation"
+            android:imeOptions="actionNext"
             android:inputType="numberDecimal"
             android:padding="10dp"
             android:textAlignment="center" />
@@ -51,6 +53,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/bg_et_confirmation"
+            android:imeOptions="actionNext"
             android:inputType="numberDecimal"
             android:padding="10dp"
             android:textAlignment="center" />
@@ -62,6 +65,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/bg_et_confirmation"
+            android:imeOptions="actionNext"
             android:inputType="numberDecimal"
             android:padding="10dp"
             android:textAlignment="center" />
@@ -73,6 +77,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/bg_et_confirmation"
+            android:imeOptions="actionNext"
             android:inputType="numberDecimal"
             android:padding="10dp"
             android:textAlignment="center" />
@@ -84,6 +89,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/bg_et_confirmation"
+            android:imeOptions="actionNext"
             android:inputType="numberDecimal"
             android:padding="10dp"
             android:textAlignment="center" />
@@ -95,6 +101,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/bg_et_confirmation"
+            android:imeOptions="actionDone"
             android:inputType="numberDecimal"
             android:padding="10dp"
             android:textAlignment="center" />

@@ -170,6 +170,12 @@ class ContactsFragment : BaseFragment() {
         builder.setView(dialogBinding.root)
         val dialog = builder.create()
 
+        dialogBinding.apply {
+            mainDialogEditMessage.setOnClickListener {
+                hideKeyboard(etMsg)
+            }
+        }
+
         if (appDatabase.messageDao().getMessage() != null &&
             appDatabase.messageDao().getMessage().message!!.trim() != ""
         ) {

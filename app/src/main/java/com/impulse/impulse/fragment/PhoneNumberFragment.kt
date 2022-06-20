@@ -7,6 +7,7 @@ import android.text.Spanned
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
@@ -14,6 +15,7 @@ import android.widget.TextView
 import com.impulse.impulse.R
 import com.impulse.impulse.databinding.FragmentPhoneNumberBinding
 import com.impulse.impulse.manager.PrefsManager
+import com.impulse.impulse.utils.Logger
 
 class PhoneNumberFragment : BaseFragment() {
     private var _binding: FragmentPhoneNumberBinding? = null
@@ -40,6 +42,11 @@ class PhoneNumberFragment : BaseFragment() {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.chbTerms.isChecked = false
+    }
+
     private fun initViews() {
         changeLLColor()
         changeTvColor()
@@ -57,8 +64,13 @@ class PhoneNumberFragment : BaseFragment() {
                 }
             }
 
+            mainPhoneNumber.setOnClickListener {
+                hideKeyboard(etPhoneNumber)
+            }
+
             btnContinue.setOnClickListener {
                 fullPhoneNumber = ccp.fullNumberWithPlus
+                Logger.d("@@@", fullPhoneNumber)
                 savePhoneNumberToSharePref()
                 if (isFilledPhone()) {
                     openConfirmationPage()

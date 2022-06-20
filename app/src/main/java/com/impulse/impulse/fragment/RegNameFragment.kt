@@ -38,6 +38,9 @@ class RegNameFragment : BaseFragment() {
         fioFocusListener()
         jshirFocusListener()
         passportFocusListener()
+        binding.mainRegName.setOnClickListener {
+            closeKeyboards()
+        }
         binding.btnContinue.setOnClickListener {
             PrefsManager.getInstance(requireContext())!!.setBoolean("isFilledName", true)
             callMainActivity(requireActivity())
@@ -201,6 +204,14 @@ class RegNameFragment : BaseFragment() {
 
                 }
             })
+        }
+    }
+
+    private fun closeKeyboards() {
+        binding.apply {
+            hideKeyboard(etFio)
+            hideKeyboard(etJshir)
+            hideKeyboard(etPassport)
         }
     }
 }

@@ -45,6 +45,9 @@ class ConfirmationFragment : BaseFragment() {
         changeTvColor()
         setPhoneNumber()
         binding.apply {
+            mainConfirmation.setOnClickListener {
+                closeKeyboards()
+            }
             btnContinue.setOnClickListener {
                 // checkCode()
                 PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
@@ -52,6 +55,7 @@ class ConfirmationFragment : BaseFragment() {
             }
         }
     }
+
 
     private fun setPhoneNumber() {
         val manager = PrefsManager.getInstance(requireContext())
@@ -184,5 +188,16 @@ class ConfirmationFragment : BaseFragment() {
                     etCode4.text.toString() + etCode5.text.toString() + etCode6.text.toString()
         }
         Log.d("@@@", "codeConfirmation: $code")
+    }
+
+    private fun closeKeyboards() {
+        binding.apply {
+            hideKeyboard(etCode1)
+            hideKeyboard(etCode2)
+            hideKeyboard(etCode3)
+            hideKeyboard(etCode4)
+            hideKeyboard(etCode5)
+            hideKeyboard(etCode6)
+        }
     }
 }

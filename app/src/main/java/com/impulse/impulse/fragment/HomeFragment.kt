@@ -119,7 +119,7 @@ class HomeFragment : BaseFragment() {
                 PrefsManager.getInstance(requireContext())!!.getData("userName")
             )
 
-            ivProfile.setOnClickListener {
+            lottieProfile.setOnClickListener {
                 navigateToProfileFragment()
             }
 
