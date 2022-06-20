@@ -1,6 +1,5 @@
 package com.impulse.impulse.fragment
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,13 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
@@ -24,9 +20,9 @@ import com.impulse.impulse.databinding.DialogHomeViewBinding
 import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
-import com.impulse.impulse.utils.SpacesItemDecoration
 import com.impulse.impulse.utils.Extensions.toast
 import com.impulse.impulse.utils.Logger
+import com.impulse.impulse.utils.SpacesItemDecoration
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -85,14 +81,13 @@ class HomeFragment : BaseFragment() {
             recyclerView.addItemDecoration(decoration)
             recyclerView.adapter = HomeItemAdapter(this@HomeFragment, getAllItems())
 
-
-            Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
             btnCall.setOnLongClickListener {
-                if (!prefsManager.hasCalled("hasCalled")) {
-                    setDialog()
-                } else {
-                    toast(getString(R.string.str_has_called))
-                }
+//                if (!prefsManager.hasCalled("hasCalled")) {
+//                    setDialog()
+//                } else {
+//                    toast(getString(R.string.str_has_called))
+//                }
+                setDialog()
                 true
             }
 
@@ -142,9 +137,9 @@ class HomeFragment : BaseFragment() {
                         dialogChosenOption = r.text.toString()
                     }
                     btnCall.playAnimation()
+                    changeAnimations()
+                    changeText()
                     Log.d("@@@", "Home Dialog option : $dialogChosenOption")
-                    prefsManager.setBoolean("hasCalled", true)
-                    Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
                     dialog.dismiss()
                 }
 
@@ -163,6 +158,23 @@ class HomeFragment : BaseFragment() {
 
             dialogBinding.tvLaw.movementMethod = LinkMovementMethod.getInstance()
         }
+    }
+
+    private fun changeText() {
+        binding.apply {
+            if (!prefsManager.hasCalled("hasCalled")) {
+                tvNeedAmbulance.text = getString(R.string.str_help_needed)
+                tvHoldButton.text = getString(R.string.str_hold_button)
+            } else {
+                tvNeedAmbulance.text = getString(R.string.str_ambulance_on_way)
+                tvHoldButton.text = getString(R.string.str_dont_panic)
+            }
+        }
+    }
+
+    private fun changeAnimations() {
+        binding.btnClick.visibility = View.GONE
+        binding.btnImpulse.visibility = View.VISIBLE
     }
 
     private fun openLawWithBrowser() {

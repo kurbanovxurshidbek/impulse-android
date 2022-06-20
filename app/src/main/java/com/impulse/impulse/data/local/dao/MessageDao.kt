@@ -12,9 +12,9 @@ interface MessageDao {
     @Insert
     fun addMessage(message: Message)
 
-    @Delete
-    fun deleteMessage(message: Message)
+    @Query("DELETE FROM  Message")
+    fun deleteMessage()
 
-    @Query("SELECT * FROM Message")
-    fun getMessage(): List<Message>
+    @Query("SELECT message_text FROM Message")
+    fun getMessage(): String
 }

@@ -1,14 +1,9 @@
 package com.impulse.impulse.activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
-import android.view.WindowManager
-import com.bumptech.glide.Glide
-import com.impulse.impulse.R
 import com.impulse.impulse.databinding.ActivitySplashBinding
 import com.impulse.impulse.manager.PrefsManager
 
@@ -33,7 +28,6 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        Glide.with(context).load(R.drawable.branding).into(binding.ivGif)
         countDownTimer()
     }
 
@@ -73,5 +67,5 @@ class SplashActivity : BaseActivity() {
                         or View.SYSTEM_UI_FLAG_FULLSCREEN // Hide status bar
                 )
     }
-    
+
 }
