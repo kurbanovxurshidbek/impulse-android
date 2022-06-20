@@ -38,8 +38,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_et_registration"
             android:imeOptions="actionNext"
-            android:inputType="text"
-            android:textColor="@color/intro_text_color" />
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

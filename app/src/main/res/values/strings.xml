@@ -34,7 +34,7 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_not_sure">Nima qilishni bilmaysizmi?</string>
     <string name="str_pick_subject">Yordam olish uchun mavzuni tanlang</string>
     <string name="str_hello_name">Salom %s</string>
-    <string name="str_see_location">Manzil</string>
+    <string name="str_see_location">Manzilingizni ko\'ring</string>
     <string name="str_sms_sending_contacts">Xabar yuboriladigan kontaktlar ro\'yxati</string>
     <string name="str_contacts">Kontaktlar</string>
     <string name="str_add">Qo\'shish</string>
@@ -88,15 +88,13 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="str_head_injury">Bosh jarohatlari</string>
     <string name="str_heart_attack">Yurak xuruji</string>
     <string name="str_heat_stroke">Quyosh urishi</string>
-    <string name="str_has_called">Tez yordam chaqirilgan</string>
+    <string name="str_has_called">Siz allaqachon tez yordam chaqirgansiz</string>
     <string name="str_press_and_hold">Tugmani bosing va ushlab turing</string>
     <string name="str_double_tap_to_exit">Chiqish uchun ikki marta bosing</string>
-    <string name="str_emergency_coming">Tez yordam yo\'lda</string>
-    <string name="str_dont_panic">Vahima qilmang!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--    For map use key-->
+<!--    For map use key-->
     <string name="google_maps_key">AIzaSyArtvZuAVTJNY74sqLojOlnI3mQnyZGo7c</string>
     <string name="no_location_data_provided">no_location_data_provided</string>
     <string name="service_not_available">service_not_available</string>

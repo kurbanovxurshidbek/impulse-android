@@ -97,16 +97,14 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvEmergency"
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_help_needed"
                     android:textColor="@color/black"
                     android:textSize="35sp" />
 
-                <TextView
-                    android:id="@+id/tvHoldButton"
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -116,70 +114,22 @@
 
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="150dp"
-                app:cardElevation="0dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/btnCall"
-                    android:layout_width="350dp"
-                    android:layout_height="350dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp"
                     app:lottie_autoPlay="false"
                     app:lottie_fileName="impulse.json"
                     app:lottie_loop="true" />
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="150dp"
-                app:cardElevation="0dp">
-
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/btnClick"
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
-                    android:layout_margin="40dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_fileName="click.json"
-                    app:lottie_loop="true" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="150dp"
-                app:cardElevation="0dp">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/btnImpulse"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
-                    app:lottie_autoPlay="false"
-                    app:lottie_fileName="pulse_white.json"
-                    app:lottie_loop="true" />
-
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
 
             <LinearLayout

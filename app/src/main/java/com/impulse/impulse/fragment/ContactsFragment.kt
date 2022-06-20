@@ -12,7 +12,6 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,7 +25,6 @@ import com.impulse.impulse.data.local.entity.Message
 import com.impulse.impulse.databinding.DialogContactMessageViewBinding
 import com.impulse.impulse.databinding.DialogDeleteMessageBinding
 import com.impulse.impulse.databinding.FragmentContactsBinding
-import com.impulse.impulse.utils.Logger
 import com.impulse.impulse.utils.SpacesItemDecoration
 import com.impulse.impulse.viewmodel.ContactsViewModel
 import com.impulse.impulse.viewmodel.factory.ContactsViewModelFactory
@@ -170,6 +168,7 @@ class ContactsFragment : BaseFragment() {
         builder.setView(dialogBinding.root)
         val dialog = builder.create()
 
+<<<<<<< HEAD
         dialogBinding.apply {
             mainDialogEditMessage.setOnClickListener {
                 hideKeyboard(etMsg)
@@ -190,13 +189,14 @@ class ContactsFragment : BaseFragment() {
             dialogBinding.msgContainer.hint = getString(R.string.str_enter_message)
         }
 
+=======
+>>>>>>> 96f31391f089e13379667e5c35513b9d8fde5312
         dialogBinding.btnOk.setOnClickListener {
             val message = Message(dialogBinding.etMsg.text.toString().trim())
-            if (appDatabase.messageDao().getMessage() != null) {
-                viewModel.deleteMessage()
-            }
             viewModel.saveMessage(message)
-            Logger.d("@@@", appDatabase.messageDao().getMessage().message!!)
+            dialogBinding.apply {
+                msgContainer.hint = appDatabase.messageDao().getMessage()[0].toString()
+            }
             dialog.dismiss()
         }
 

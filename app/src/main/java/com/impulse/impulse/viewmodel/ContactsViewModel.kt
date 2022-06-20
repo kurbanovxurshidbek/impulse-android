@@ -42,7 +42,7 @@ class ContactsViewModel(
         messageRepository.addMessage(message)
     }
 
-    fun deleteMessage() = viewModelScope.launch {
-        messageRepository.deleteMessage()
+    fun deleteMessage(message: Message) = viewModelScope.launch {
+        messageRepository.deleteMessage(message)
     }
 }

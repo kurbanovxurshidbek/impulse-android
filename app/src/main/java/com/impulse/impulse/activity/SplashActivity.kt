@@ -1,17 +1,12 @@
 package com.impulse.impulse.activity
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog.show
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.window.SplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.bumptech.glide.Glide
 import com.impulse.impulse.R
 import com.impulse.impulse.databinding.ActivitySplashBinding
@@ -38,6 +33,7 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun initViews() {
+        Glide.with(context).load(R.drawable.branding).into(binding.ivGif)
         countDownTimer()
     }
 
@@ -69,13 +65,13 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun hideSystemUI() {
-        val windowInsetsController =
-            ViewCompat.getWindowInsetsController(window.decorView) ?: return
-        // Configure the behavior of the hidden system bars
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        // Hide both the status bar and the navigation bar
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        // Hide the nav bar and status bar
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // Hide nav bar
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN // Hide status bar
+                )
     }
-
+    
 }

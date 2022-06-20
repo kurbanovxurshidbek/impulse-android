@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 
 object Extensions {
     fun Fragment.toast(msg: String) {
-        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT + 500).show()
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
     fun Fragment.isValidPhoneNumber(string: String): Boolean {

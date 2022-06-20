@@ -1,5 +1,6 @@
 package com.impulse.impulse.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,11 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.impulse.impulse.R
 import com.impulse.impulse.adapter.HomeItemAdapter
@@ -21,22 +24,18 @@ import com.impulse.impulse.databinding.DialogHomeViewBinding
 import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
+import com.impulse.impulse.utils.SpacesItemDecoration
 import com.impulse.impulse.utils.Extensions.toast
 import com.impulse.impulse.utils.Logger
-import com.impulse.impulse.utils.SpacesItemDecoration
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
-    private var job: Job? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var prefsManager: PrefsManager
     private lateinit var navController: NavController
-    private var clickCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +50,6 @@ class HomeFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        job?.cancel()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,7 +77,6 @@ class HomeFragment : BaseFragment() {
 
     private fun initViews() {
         prefsManager = PrefsManager.getInstance(requireContext())!!
-        val hasCalled = prefsManager.hasCalled("hasCalled")
         binding.apply {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -89,29 +86,18 @@ class HomeFragment : BaseFragment() {
             recyclerView.adapter = HomeItemAdapter(this@HomeFragment, getAllItems())
 
 
+            Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
             btnCall.setOnLongClickListener {
-                if (!hasCalled) {
+                if (!prefsManager.hasCalled("hasCalled")) {
                     setDialog()
-                    setTextMainTexts(hasCalled)
                 } else {
-                    prefsManager.setBoolean("hasCalled", false)
                     toast(getString(R.string.str_has_called))
                 }
                 true
             }
 
             btnCall.setOnClickListener {
-
-                job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                    if (clickCount < 2) {
-                        toast(getString(R.string.str_press_and_hold))
-                    } else {
-                        delay(5000)
-                        clickCount = 0
-                    }
-                }
-
-                clickCount++
+                toast(getString(R.string.str_press_and_hold))
             }
 
             tvName.text = getString(
@@ -125,18 +111,6 @@ class HomeFragment : BaseFragment() {
 
             ivLocation.setOnClickListener {
                 navController.navigate(R.id.homeToCurrentLocationFragment)
-            }
-        }
-    }
-
-    private fun setTextMainTexts(hasCalled: Boolean) {
-        binding.apply {
-            if (!hasCalled) {
-                tvEmergency.text = getString(R.string.str_emergency_coming)
-                tvHoldButton.text = getString(R.string.str_dont_panic)
-            } else {
-                tvEmergency.text = getString(R.string.str_help_needed)
-                tvHoldButton.text = getString(R.string.str_hold_button)
             }
         }
     }
@@ -157,8 +131,6 @@ class HomeFragment : BaseFragment() {
                 rbHardest.setOnClickListener { btnOk.isEnabled = true }
 
                 btnOk.setOnClickListener {
-                    btnImpulse.visibility = View.VISIBLE
-                    btnClick.visibility = View.GONE
                     if (rgHome.checkedRadioButtonId == -1) {
                         //
                     } else {
@@ -170,9 +142,9 @@ class HomeFragment : BaseFragment() {
                         dialogChosenOption = r.text.toString()
                     }
                     btnCall.playAnimation()
-                    btnImpulse.playAnimation()
                     Log.d("@@@", "Home Dialog option : $dialogChosenOption")
                     prefsManager.setBoolean("hasCalled", true)
+                    Logger.d("@@@", "${prefsManager.hasCalled("hasCalled")}")
                     dialog.dismiss()
                 }
 

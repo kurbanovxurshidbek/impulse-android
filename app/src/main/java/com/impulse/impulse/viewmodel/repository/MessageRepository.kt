@@ -6,6 +6,6 @@ import com.impulse.impulse.data.local.entity.Message
 class MessageRepository(private val messageDao: MessageDao) {
 
     fun addMessage(message: Message) = messageDao.addMessage(message)
-    fun deleteMessage() = messageDao.deleteMessage()
+    fun deleteMessage(message: Message) = messageDao.deleteMessage(message)
     fun getMessage() = messageDao.getMessage()
 }
