@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,8 +22,9 @@ import com.impulse.impulse.databinding.FragmentHomeBinding
 import com.impulse.impulse.manager.PrefsManager
 import com.impulse.impulse.model.HomeItem
 import com.impulse.impulse.utils.Extensions.toast
-import com.impulse.impulse.utils.Logger
 import com.impulse.impulse.utils.SpacesItemDecoration
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 
 class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -32,6 +34,8 @@ class HomeFragment : BaseFragment() {
     private val binding get() = _binding!!
     private lateinit var prefsManager: PrefsManager
     private lateinit var navController: NavController
+    private var job: Job? = null
+    private var clickCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +50,7 @@ class HomeFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        job?.cancel()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,6 +78,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initViews() {
         prefsManager = PrefsManager.getInstance(requireContext())!!
+        val hasCalled = prefsManager.hasCalled("hasCalled")
         binding.apply {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -82,17 +88,28 @@ class HomeFragment : BaseFragment() {
             recyclerView.adapter = HomeItemAdapter(this@HomeFragment, getAllItems())
 
             btnCall.setOnLongClickListener {
-//                if (!prefsManager.hasCalled("hasCalled")) {
-//                    setDialog()
-//                } else {
-//                    toast(getString(R.string.str_has_called))
-//                }
-                setDialog()
+                if (!hasCalled) {
+                    setDialog()
+                    setTextMainTexts(hasCalled)
+                } else {
+                    prefsManager.setBoolean("hasCalled", false)
+                    toast(getString(R.string.str_has_called))
+                }
                 true
             }
 
             btnCall.setOnClickListener {
-                toast(getString(R.string.str_press_and_hold))
+
+                job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                    if (clickCount < 2) {
+                        toast(getString(R.string.str_press_and_hold))
+                    } else {
+                        delay(5000)
+                        clickCount = 0
+                    }
+                }
+
+                clickCount++
             }
 
             tvName.text = getString(
@@ -106,6 +123,18 @@ class HomeFragment : BaseFragment() {
 
             ivLocation.setOnClickListener {
                 navController.navigate(R.id.homeToCurrentLocationFragment)
+            }
+        }
+    }
+
+    private fun setTextMainTexts(hasCalled: Boolean) {
+        binding.apply {
+            if (!hasCalled) {
+                tvNeedAmbulance.text = getString(R.string.str_ambulance_on_way)
+                tvHoldButton.text = getString(R.string.str_dont_panic)
+            } else {
+                tvNeedAmbulance.text = getString(R.string.str_help_needed)
+                tvHoldButton.text = getString(R.string.str_hold_button)
             }
         }
     }
