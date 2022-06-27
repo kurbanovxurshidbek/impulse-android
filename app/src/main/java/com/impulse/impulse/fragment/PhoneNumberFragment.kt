@@ -76,6 +76,9 @@ class PhoneNumberFragment : BaseFragment() {
                     openConfirmationPage()
                 }
             }
+            tvTermsOfUse.setOnClickListener {
+                // openTermsOfUse
+            }
         }
     }
 

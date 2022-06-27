@@ -112,11 +112,6 @@ class HomeFragment : BaseFragment() {
                 clickCount++
             }
 
-            tvName.text = getString(
-                R.string.str_hello_name,
-                PrefsManager.getInstance(requireContext())!!.getData("userName")
-            )
-
             lottieProfile.setOnClickListener {
                 navigateToProfileFragment()
             }

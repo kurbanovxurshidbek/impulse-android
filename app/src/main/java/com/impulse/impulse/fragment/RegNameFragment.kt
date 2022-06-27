@@ -148,8 +148,6 @@ class RegNameFragment : BaseFragment() {
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    PrefsManager.getInstance(requireContext())!!
-                        .saveData("userName", etFio.text!!.split(' ')[0])
                 }
             })
         }

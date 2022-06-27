@@ -163,6 +163,7 @@ class ConfirmationFragment : BaseFragment() {
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
+                    closeKeyboards()
                     getCode()
                     checkHasFilled()
                 }

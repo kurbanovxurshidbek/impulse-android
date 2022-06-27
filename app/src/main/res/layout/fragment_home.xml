@@ -30,17 +30,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="start|center">
-
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/ivProfile"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_profile"
-                            android:tint="@color/main_red"
-                            android:visibility="gone"
-                            app:shapeAppearanceOverlay="@style/corner" />
+                        android:gravity="center_vertical|start">
 
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/lottieProfile"
@@ -49,15 +39,6 @@
                             app:lottie_autoPlay="true"
                             app:lottie_fileName="profile_home.json"
                             app:lottie_loop="false" />
-
-                        <TextView
-                            android:id="@+id/tvName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:text="@string/str_hello_name"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -69,7 +50,7 @@
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/ivLocation"
                             android:layout_width="50dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             app:lottie_autoPlay="true"
                             app:lottie_fileName="location_home.json"
                             app:lottie_loop="false" />
@@ -77,7 +58,6 @@
                     </LinearLayout>
 
                 </FrameLayout>
-
 
             </androidx.appcompat.widget.Toolbar>
 
