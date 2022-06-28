@@ -78,7 +78,6 @@ class HomeFragment : BaseFragment() {
 
     private fun initViews() {
         prefsManager = PrefsManager.getInstance(requireContext())!!
-        val hasCalled = prefsManager.hasCalled("hasCalled")
         binding.apply {
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -107,10 +106,12 @@ class HomeFragment : BaseFragment() {
             }
 
             lottieProfile.setOnClickListener {
+                vibrate()
                 navigateToProfileFragment()
             }
 
             ivLocation.setOnClickListener {
+                vibrate()
                 navController.navigate(R.id.homeToCurrentLocationFragment)
             }
         }
@@ -132,6 +133,7 @@ class HomeFragment : BaseFragment() {
                 rbHardest.setOnClickListener { btnOk.isEnabled = true }
 
                 btnOk.setOnClickListener {
+                    vibrate()
                     prefsManager.setBoolean("hasCalled", true)
                     if (rgHome.checkedRadioButtonId == -1) {
                         //
@@ -157,6 +159,7 @@ class HomeFragment : BaseFragment() {
 
 
             dialogBinding.btnCancel.setOnClickListener {
+                vibrate()
                 prefsManager.setBoolean("hasCalled", false)
                 changeText()
                 dialog.dismiss()

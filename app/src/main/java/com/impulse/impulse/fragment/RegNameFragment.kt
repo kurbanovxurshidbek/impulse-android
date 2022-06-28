@@ -42,6 +42,7 @@ class RegNameFragment : BaseFragment() {
             closeKeyboards()
         }
         binding.btnContinue.setOnClickListener {
+            vibrate()
             PrefsManager.getInstance(requireContext())!!.setBoolean("isFilledName", true)
             callMainActivity(requireActivity())
         }

@@ -29,12 +29,15 @@ class IntroPageActivity : BaseActivity() {
             viewPager.adapter = IntroPageItemAdapter(context, getItems())
             dotsIndicator.setViewPager2(viewPager)
             btnContinue.setOnClickListener {
+                vibrate()
                 viewPager.currentItem = ++viewPager.currentItem
             }
             tvSkip.setOnClickListener {
+                vibrate()
                 viewPager.currentItem = getItems().size - 1
             }
             btnGetStarted.setOnClickListener {
+                vibrate()
                 saveLoggedState()
                 callSignInActivity(this@IntroPageActivity)
                 finish()

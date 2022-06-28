@@ -146,10 +146,12 @@ class ContactsFragment : BaseFragment() {
             refreshAdapter(contacts)
 
             fab.setOnClickListener {
+                vibrate()
                 startActivityForResult(pickContact, REQUEST_CONTACT)
             }
 
             ivEdit.setOnClickListener {
+                vibrate()
                 setEditDialog()
             }
         }

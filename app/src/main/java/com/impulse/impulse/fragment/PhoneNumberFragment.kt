@@ -69,6 +69,7 @@ class PhoneNumberFragment : BaseFragment() {
             }
 
             btnContinue.setOnClickListener {
+                vibrate()
                 fullPhoneNumber = ccp.fullNumberWithPlus
                 Logger.d("@@@", fullPhoneNumber)
                 savePhoneNumberToSharePref()

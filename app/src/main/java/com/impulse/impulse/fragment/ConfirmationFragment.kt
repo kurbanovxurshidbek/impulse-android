@@ -49,6 +49,7 @@ class ConfirmationFragment : BaseFragment() {
                 closeKeyboards()
             }
             btnContinue.setOnClickListener {
+                vibrate()
                 // checkCode()
                 PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
                 callSignUpActivity(requireActivity())
