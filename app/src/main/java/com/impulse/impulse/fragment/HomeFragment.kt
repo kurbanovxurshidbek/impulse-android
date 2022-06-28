@@ -88,13 +88,7 @@ class HomeFragment : BaseFragment() {
             recyclerView.adapter = HomeItemAdapter(this@HomeFragment, getAllItems())
 
             btnCall.setOnLongClickListener {
-                if (!hasCalled) {
-                    setDialog()
-                    setTextMainTexts(hasCalled)
-                } else {
-                    prefsManager.setBoolean("hasCalled", false)
-                    toast(getString(R.string.str_has_called))
-                }
+                setDialog()
                 true
             }
 
@@ -122,18 +116,6 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun setTextMainTexts(hasCalled: Boolean) {
-        binding.apply {
-            if (!hasCalled) {
-                tvNeedAmbulance.text = getString(R.string.str_ambulance_on_way)
-                tvHoldButton.text = getString(R.string.str_dont_panic)
-            } else {
-                tvNeedAmbulance.text = getString(R.string.str_help_needed)
-                tvHoldButton.text = getString(R.string.str_hold_button)
-            }
-        }
-    }
-
     private fun setDialog() {
         binding.apply {
             var dialogChosenOption: String? = null
@@ -150,6 +132,7 @@ class HomeFragment : BaseFragment() {
                 rbHardest.setOnClickListener { btnOk.isEnabled = true }
 
                 btnOk.setOnClickListener {
+                    prefsManager.setBoolean("hasCalled", true)
                     if (rgHome.checkedRadioButtonId == -1) {
                         //
                     } else {
@@ -174,11 +157,12 @@ class HomeFragment : BaseFragment() {
 
 
             dialogBinding.btnCancel.setOnClickListener {
+                prefsManager.setBoolean("hasCalled", false)
+                changeText()
                 dialog.dismiss()
             }
 
             dialog.show()
-
 
             dialogBinding.tvLaw.movementMethod = LinkMovementMethod.getInstance()
         }
@@ -186,12 +170,12 @@ class HomeFragment : BaseFragment() {
 
     private fun changeText() {
         binding.apply {
-            if (!prefsManager.hasCalled("hasCalled")) {
-                tvNeedAmbulance.text = getString(R.string.str_help_needed)
-                tvHoldButton.text = getString(R.string.str_hold_button)
-            } else {
+            if (prefsManager.hasCalled("hasCalled")) {
                 tvNeedAmbulance.text = getString(R.string.str_ambulance_on_way)
                 tvHoldButton.text = getString(R.string.str_dont_panic)
+            } else {
+                tvNeedAmbulance.text = getString(R.string.str_help_needed)
+                tvHoldButton.text = getString(R.string.str_hold_button)
             }
         }
     }

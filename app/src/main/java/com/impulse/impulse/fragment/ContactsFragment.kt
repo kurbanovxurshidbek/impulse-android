@@ -9,6 +9,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -109,7 +110,7 @@ class ContactsFragment : BaseFragment() {
                             val contactNumber =
                                 cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                             //set phone number
-                            val contact = Contact(name, contactNumber)
+                            val contact = Contact(name = name, number = contactNumber)
                             saveContactToDatabase(contact)
                         }
                         cursorPhone.close()
@@ -127,22 +128,14 @@ class ContactsFragment : BaseFragment() {
         }
     }
 
-    private fun saveContactToDatabase(contact: Contact) {
-        viewModel.addContact(contact)
-        contacts.add(contact)
-        contactAdapter.notifyItemInserted(contacts.size - 1)
-        refreshAdapter(contacts)
-    }
-
-
     private fun initViews() {
         appDatabase = AppDatabase.getInstance(requireActivity())
-        setupViewModel()
-        // Intent to pick contacts
-        val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
-
         contacts = ArrayList()
         contacts = appDatabase.contactDao().getAllContacts() as ArrayList<Contact>
+        setupViewModel()
+        checkForContacts()
+        // Intent to pick contacts
+        val pickContact = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
         binding.apply {
             recyclerView.layoutManager =
@@ -162,6 +155,21 @@ class ContactsFragment : BaseFragment() {
         }
 
         requestContactsPermission();
+    }
+
+    private fun checkForContacts() {
+        binding.apply {
+            if (appDatabase.contactDao().getAllContacts().isEmpty()) {
+                llNoContacts.visibility = View.VISIBLE
+                llContacts.visibility = View.GONE
+                ivNoContacts.loop(true)
+            } else {
+                llNoContacts.visibility = View.GONE
+                llContacts.visibility = View.VISIBLE
+                ivNoContacts.pauseAnimation()
+                ivNoContacts.loop(false)
+            }
+        }
     }
 
     private fun setEditDialog() {
@@ -233,6 +241,8 @@ class ContactsFragment : BaseFragment() {
     }
 
     fun deleteContactFromDatabase(contact: Contact, position: Int) {
+        Log.d("TAG", "deleteContactFromDatabase: ${contact.name}")
+        Log.d("TAG", "deleteContactFromDatabase: ${contact.id}")
         val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
         val dialogBinding = DialogDeleteMessageBinding.inflate(layoutInflater)
         builder.setView(dialogBinding.root)
@@ -243,6 +253,7 @@ class ContactsFragment : BaseFragment() {
             contacts.remove(contact)
             contactAdapter.notifyItemRemoved(position)
             refreshAdapter(contacts)
+            checkForContacts()
             dialog.dismiss()
         }
 
@@ -251,6 +262,14 @@ class ContactsFragment : BaseFragment() {
         }
 
         dialog.show()
+    }
+
+    private fun saveContactToDatabase(contact: Contact) {
+        viewModel.addContact(contact)
+        contacts.add(contact)
+        contactAdapter.notifyItemInserted(contacts.size - 1)
+        refreshAdapter(contacts)
+        checkForContacts()
     }
 
     private fun setupViewModel() {
