@@ -1,18 +1,56 @@
 {
   "project_info": {
     "project_number": "1074205427078",
+    "firebase_url": "https://impulse-43790-default-rtdb.firebaseio.com",
     "project_id": "impulse-43790",
     "storage_bucket": "impulse-43790.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1074205427078:android:52b4fd93cab6e671fc5807",
+        "mobilesdk_app_id": "1:1074205427078:android:c61e1e603be6025efc5807",
         "android_client_info": {
-          "package_name": "com.impulse.impulse"
+          "package_name": "com.impulse.impulse_driver"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1074205427078-kkdu85q30m0u2q97gt66u043f5to9l2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANPVu1lYspgyTCCLgiVDlsfdtfWTlfx8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074205427078-kkdu85q30m0u2q97gt66u043f5to9l2a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074205427078:android:278c8f827c396fe3fc5807",
+        "android_client_info": {
+          "package_name": "uz.impulse.impulse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074205427078-ljhn6jstnk5aigh9c0o0pp8o4dub526i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.impulse.impulse",
+            "certificate_hash": "0be308cef962f4434314de536e37f46c0330eade"
+          }
+        },
         {
           "client_id": "1074205427078-kkdu85q30m0u2q97gt66u043f5to9l2a.apps.googleusercontent.com",
           "client_type": 3
