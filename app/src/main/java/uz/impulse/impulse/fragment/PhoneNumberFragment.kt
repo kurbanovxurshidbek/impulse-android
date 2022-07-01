@@ -11,10 +11,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import uz.impulse.impulse.R
+import uz.impulse.impulse.data.remote.PhoneNumberHttp
+import uz.impulse.impulse.data.remote.service.PhoneNumberService
 import uz.impulse.impulse.databinding.FragmentPhoneNumberBinding
 import uz.impulse.impulse.manager.PrefsManager
+import uz.impulse.impulse.model.PhoneResponse
+import uz.impulse.impulse.utils.Extensions.toast
 import uz.impulse.impulse.utils.Logger
+import uz.impulse.impulse.viewmodel.ContactsViewModel
+import uz.impulse.impulse.viewmodel.PhoneAuthViewModel
+import uz.impulse.impulse.viewmodel.factory.ContactsViewModelFactory
+import uz.impulse.impulse.viewmodel.factory.PhoneAuthViewModelFactory
+import uz.impulse.impulse.viewmodel.repository.ContactRepository
+import uz.impulse.impulse.viewmodel.repository.MessageRepository
+import uz.impulse.impulse.viewmodel.repository.PhoneAuthRepository
 
 class PhoneNumberFragment : BaseFragment() {
     private var _binding: FragmentPhoneNumberBinding? = null
@@ -25,6 +42,8 @@ class PhoneNumberFragment : BaseFragment() {
 
     private var isChecked = false
     private var fullPhoneNumber = ""
+
+    private lateinit var viewModel: PhoneAuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +66,7 @@ class PhoneNumberFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        setupViewModel()
         changeLLColor()
         changeTvColor()
 
@@ -70,11 +90,19 @@ class PhoneNumberFragment : BaseFragment() {
             btnContinue.setOnClickListener {
                 vibrate()
                 fullPhoneNumber = ccp.fullNumberWithPlus
-                Logger.d("@@@", fullPhoneNumber)
                 savePhoneNumberToSharePref()
                 if (isFilledPhone()) {
                     openConfirmationPage()
                 }
+                viewModel.requestConfirmationCode(fullPhoneNumber)
+                viewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
+                    if (response.isSuccessful) {
+                        Logger.d("@@@", response.body()!!.message.toString())
+                        Logger.d("@@@", response.code().toString())
+                    } else {
+                        toast(response.code().toString())
+                    }
+                })
             }
             tvTermsOfUse.setOnClickListener {
                 // openTermsOfUse
@@ -167,5 +195,18 @@ class PhoneNumberFragment : BaseFragment() {
                 }
             })
         }
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            PhoneAuthViewModelFactory(
+                PhoneAuthRepository(
+                    PhoneNumberHttp.createServiceWithAuth(
+                        PhoneNumberService::class.java
+                    )
+                )
+            )
+        )[PhoneAuthViewModel::class.java]
     }
 }

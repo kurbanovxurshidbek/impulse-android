@@ -1,4 +1,4 @@
-package com.impulse.impulse
+package uz.impulse.impulse
 
 import org.junit.Test
 
