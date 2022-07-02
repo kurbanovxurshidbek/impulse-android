@@ -13,7 +13,7 @@ import android.widget.TextView
 import uz.impulse.impulse.R
 import uz.impulse.impulse.databinding.FragmentConfirmationBinding
 import uz.impulse.impulse.manager.PrefsManager
-import uz.impulse.impulse.utils.Extensions.toast
+import uz.impulse.impulse.utils.Logger
 
 class ConfirmationFragment : BaseFragment() {
     private var _binding: FragmentConfirmationBinding? = null
@@ -50,21 +50,11 @@ class ConfirmationFragment : BaseFragment() {
             }
             btnContinue.setOnClickListener {
                 vibrate()
-                if (validCode()) {
-                    PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
-                    callSignUpActivity(requireActivity())
-                } else {
-                    toast("Enter a valid code!!!")
-                }
+                PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
+                callSignUpActivity(requireActivity())
             }
         }
     }
-
-    private fun validCode(): Boolean {
-        val cCode = PrefsManager.getInstance(requireContext())!!.getData("confirmationCode")
-        return code == cCode
-    }
-
 
     private fun setPhoneNumber() {
         val manager = PrefsManager.getInstance(requireContext())
@@ -196,6 +186,7 @@ class ConfirmationFragment : BaseFragment() {
         binding.apply {
             code = etCode1.text.toString() + etCode2.text.toString() + etCode3.text.toString() +
                     etCode4.text.toString() + etCode5.text.toString() + etCode6.text.toString()
+            Logger.d("@@@", "Code : $code")
         }
     }
 

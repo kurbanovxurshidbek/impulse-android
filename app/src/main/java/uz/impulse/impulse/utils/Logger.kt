@@ -1,9 +1,9 @@
 package uz.impulse.impulse.utils
 
 import android.util.Log
-import uz.impulse.impulse.data.remote.PhoneNumberHttp.IS_TESTER
 
 object Logger {
+    val IS_TESTER = true
     fun d(tag: String, msg: String) {
         if (IS_TESTER) Log.d(tag, msg)
     }
