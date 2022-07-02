@@ -11,22 +11,24 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object PhoneNumberHttp {
-    private val client = getClient()
     const val IS_TESTER = true
-    private const val SERVER_DEVELOPMENT = "https://impulseserverdeploy.herokuapp.com"
-    private const val SERVER_PRODUCTION = "https://impulseserverdeploy.herokuapp.com"
+    private const val SERVER_DEVELOPMENT = "https://impulseserverdeploy.herokuapp.com/api/"
+    private const val SERVER_PRODUCTION = "https://impulseserverdeploy.herokuapp.com/api/"
 
+    private val client = getClient()
+    private val retrofit = getRetrofit(client)
 
-    private val retrofit = Retrofit.Builder().baseUrl(server())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    private fun server(): String {
-        if (IS_TESTER) return SERVER_DEVELOPMENT
-        return SERVER_PRODUCTION
+    private fun getRetrofit(client: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(SERVER_DEVELOPMENT)
+            .client(client)
+            .build()
     }
 
-    val phoneNumberService: PhoneNumberService = retrofit.create(PhoneNumberService::class.java)
+    fun <T> createService(service: Class<T>): T {
+        return retrofit.create(service)
+    }
 
     private fun getClient(): OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(60, TimeUnit.SECONDS)
@@ -43,14 +45,11 @@ object PhoneNumberHttp {
 
     fun <T> createServiceWithAuth(service: Class<T>?): T {
         val newClient =
-            client.newBuilder().addInterceptor(object : Interceptor {
-                @Throws(IOException::class)
-                override fun intercept(chain: Interceptor.Chain): Response {
-                    var request = chain.request()
-                    val builder = request.newBuilder()
-                    request = builder.build()
-                    return chain.proceed(request)
-                }
+            client.newBuilder().addInterceptor(Interceptor { chain ->
+                var request = chain.request()
+                val builder = request.newBuilder()
+                request = builder.build()
+                chain.proceed(request)
             }).build()
         val newRetrofit = retrofit.newBuilder().client(newClient).build()
         return newRetrofit.create(service)

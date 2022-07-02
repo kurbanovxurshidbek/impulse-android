@@ -6,7 +6,6 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import android.widget.TextView
 import uz.impulse.impulse.R
 import uz.impulse.impulse.databinding.FragmentConfirmationBinding
 import uz.impulse.impulse.manager.PrefsManager
+import uz.impulse.impulse.utils.Extensions.toast
 
 class ConfirmationFragment : BaseFragment() {
     private var _binding: FragmentConfirmationBinding? = null
@@ -50,11 +50,19 @@ class ConfirmationFragment : BaseFragment() {
             }
             btnContinue.setOnClickListener {
                 vibrate()
-                // checkCode()
-                PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
-                callSignUpActivity(requireActivity())
+                if (validCode()) {
+                    PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
+                    callSignUpActivity(requireActivity())
+                } else {
+                    toast("Enter a valid code!!!")
+                }
             }
         }
+    }
+
+    private fun validCode(): Boolean {
+        val cCode = PrefsManager.getInstance(requireContext())!!.getData("confirmationCode")
+        return code == cCode
     }
 
 
@@ -189,7 +197,6 @@ class ConfirmationFragment : BaseFragment() {
             code = etCode1.text.toString() + etCode2.text.toString() + etCode3.text.toString() +
                     etCode4.text.toString() + etCode5.text.toString() + etCode6.text.toString()
         }
-        Log.d("@@@", "codeConfirmation: $code")
     }
 
     private fun closeKeyboards() {
