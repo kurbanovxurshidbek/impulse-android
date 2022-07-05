@@ -6,6 +6,7 @@
     android:background="@drawable/bg_ll_aid"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/llFirstAidItem"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="10dp">

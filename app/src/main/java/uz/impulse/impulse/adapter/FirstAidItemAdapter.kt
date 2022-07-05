@@ -5,9 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.impulse.impulse.databinding.ItemAidHeadViewBinding
 import uz.impulse.impulse.databinding.ItemAidViewBinding
+import uz.impulse.impulse.fragment.FirstAidFragment
 import uz.impulse.impulse.model.FirstAidItem
 
-class FirstAidItemAdapter(private var items: List<FirstAidItem>) : BaseAdapter() {
+class FirstAidItemAdapter(
+    private var fragment: FirstAidFragment,
+    private var items: List<FirstAidItem>
+) : BaseAdapter() {
     private val ITEM_HEADER = 0
     private val ITEM_VIEW = 1
 
@@ -24,9 +28,8 @@ class FirstAidItemAdapter(private var items: List<FirstAidItem>) : BaseAdapter()
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = items[position]
         if (holder is MyViewHolder) {
-            holder.onBind(item)
+            holder.onBind(position)
         }
     }
 
@@ -35,10 +38,15 @@ class FirstAidItemAdapter(private var items: List<FirstAidItem>) : BaseAdapter()
     inner class MyViewHolder(var binding: ItemAidViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(item: FirstAidItem) {
+        fun onBind(position: Int) {
+            val item = items[position]
             binding.apply {
                 ivIcon.setImageResource(item.icon!!)
                 tvName.text = item.name
+
+                llFirstAidItem.setOnClickListener {
+                    fragment.openIllnessPage(position)
+                }
             }
         }
     }

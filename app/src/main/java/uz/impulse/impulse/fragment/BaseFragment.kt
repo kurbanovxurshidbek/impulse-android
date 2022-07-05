@@ -9,6 +9,7 @@ import android.os.Vibrator
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import uz.impulse.impulse.R
 import uz.impulse.impulse.activity.MainActivity

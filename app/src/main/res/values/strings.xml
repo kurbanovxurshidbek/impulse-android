@@ -102,4 +102,5 @@ Agar hali ham kodni qabul qilmagan bo\'lsangiz, iltimos raqamingizni qaytadan ki
     <string name="service_not_available">service_not_available</string>
     <string name="invalid_lat_long_used">invalid_lat_long_used</string>
     <string name="address_found">address_found</string>
+    <string name="str_back">Orqaga</string>
 </resources>

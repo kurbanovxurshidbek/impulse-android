@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import uz.impulse.impulse.R
 import uz.impulse.impulse.adapter.FirstAidItemAdapter
@@ -18,6 +21,8 @@ class FirstAidFragment : BaseFragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +39,25 @@ class FirstAidFragment : BaseFragment() {
         _binding = null
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     private fun initViews() {
         binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             val decoration = SpacesItemDecoration(2)
             recyclerView.addItemDecoration(decoration)
 
-            recyclerView.adapter = FirstAidItemAdapter(getAllItems())
+            recyclerView.adapter = FirstAidItemAdapter(this@FirstAidFragment, getAllItems())
         }
     }
+
+    fun openIllnessPage(position: Int) {
+        navController = findNavController()
+        navController.navigate(R.id.firstAidToIllness)
+    }
+
 
     private fun getAllItems(): List<FirstAidItem> {
         val items = ArrayList<FirstAidItem>()

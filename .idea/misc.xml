@@ -51,6 +51,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_edit_profile.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_first_aid.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_home.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_illness.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_phone_number.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/fragment_profile.xml" value="0.24818840579710144" />
@@ -61,6 +62,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_contact_nested_view.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_contact_view.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_home_situation.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_illness_view.xml" value="0.2734375" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/layout/item_intro_page.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/menu/bottom_menu.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/impulse-android/app/src/main/res/menu/navigation.xml" value="0.27447916666666666" />
