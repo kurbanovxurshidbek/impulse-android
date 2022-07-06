@@ -37,10 +37,14 @@
         android:id="@+id/firstAidFragment"
         android:name="uz.impulse.impulse.fragment.FirstAidFragment"
         android:label="fragment_first_aid"
-        tools:layout="@layout/fragment_first_aid" >
+        tools:layout="@layout/fragment_first_aid">
         <action
             android:id="@+id/firstAidToIllness"
-            app:destination="@id/illnessFragment" />
+            app:destination="@id/illnessFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -65,5 +69,12 @@
         android:id="@+id/illnessFragment"
         android:name="uz.impulse.impulse.fragment.IllnessFragment"
         android:label="fragment_illness"
-        tools:layout="@layout/fragment_illness" />
+        tools:layout="@layout/fragment_illness">
+        <action
+            android:id="@+id/illnessBackToFirstAid"
+            app:destination="@id/firstAidFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popUpTo="@id/firstAidFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

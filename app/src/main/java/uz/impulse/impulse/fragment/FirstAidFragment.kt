@@ -4,17 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import uz.impulse.impulse.R
 import uz.impulse.impulse.adapter.FirstAidItemAdapter
+import uz.impulse.impulse.data.remote.ApiClient
+import uz.impulse.impulse.data.remote.services.IllnessService
 import uz.impulse.impulse.databinding.FragmentFirstAidBinding
 import uz.impulse.impulse.model.FirstAidItem
 import uz.impulse.impulse.utils.SpacesItemDecoration
+import uz.impulse.impulse.viewmodel.IllnessViewModel
+import uz.impulse.impulse.viewmodel.factory.IllnessViewModelFactory
+import uz.impulse.impulse.viewmodel.repository.IllnessRepository
 
 class FirstAidFragment : BaseFragment() {
+    private val TAG = FirstAidFragment::class.java.simpleName
 
     private var _binding: FragmentFirstAidBinding? = null
 
@@ -39,11 +46,8 @@ class FirstAidFragment : BaseFragment() {
         _binding = null
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     private fun initViews() {
+        navController = findNavController()
         binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             val decoration = SpacesItemDecoration(2)
@@ -54,10 +58,10 @@ class FirstAidFragment : BaseFragment() {
     }
 
     fun openIllnessPage(position: Int) {
-        navController = findNavController()
-        navController.navigate(R.id.firstAidToIllness)
+        val args = Bundle()
+        args.putInt("id", position)
+        navController.navigate(R.id.firstAidToIllness, args)
     }
-
 
     private fun getAllItems(): List<FirstAidItem> {
         val items = ArrayList<FirstAidItem>()
@@ -84,5 +88,4 @@ class FirstAidFragment : BaseFragment() {
         items.add(FirstAidItem(R.drawable.ic_heat_stroke, getString(R.string.str_heat_stroke)))
         return items
     }
-
 }
