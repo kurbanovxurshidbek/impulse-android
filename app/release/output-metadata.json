@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.impulse.impulse",
+  "applicationId": "uz.impulse.impulse",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
-      "versionName": "1.0.0",
+      "versionCode": 3,
+      "versionName": "1.0.2",
       "outputFile": "app-release.apk"
     }
   ],
