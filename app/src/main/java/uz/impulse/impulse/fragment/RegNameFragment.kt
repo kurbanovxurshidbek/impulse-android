@@ -36,7 +36,6 @@ class RegNameFragment : BaseFragment() {
 
     private fun initViews() {
         fioFocusListener()
-        jshirFocusListener()
         passportFocusListener()
         binding.mainRegName.setOnClickListener {
             closeKeyboards()
@@ -45,72 +44,6 @@ class RegNameFragment : BaseFragment() {
             vibrate()
             PrefsManager.getInstance(requireContext())!!.setBoolean("isFilledName", true)
             callMainActivity(requireActivity())
-        }
-    }
-
-    private fun jshirFocusListener() {
-        binding.apply {
-            etJshir.setOnFocusChangeListener { _, focused ->
-                if (!focused) {
-                    if (etJshir.text!!.isEmpty()) {
-                        jshirContainer.setHelperTextColor(
-                            ColorStateList.valueOf(
-                                resources.getColor(
-                                    R.color.main_red
-                                )
-                            )
-                        )
-                        jshirContainer.helperText = getString(R.string.str_jshir_error)
-                    }
-                }
-            }
-            etJshir.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    if (p0!!.isNotEmpty()) {
-                        jshirContainer.setHelperTextColor(
-                            ColorStateList.valueOf(
-                                resources.getColor(
-                                    R.color.helper_text_color
-                                )
-                            )
-                        )
-                        jshirContainer.helperText = getString(R.string.str_jshir_helper)
-                    } else {
-                        jshirContainer.setHelperTextColor(
-                            ColorStateList.valueOf(
-                                resources.getColor(
-                                    R.color.main_red
-                                )
-                            )
-                        )
-                        jshirContainer.helperText = getString(R.string.str_jshir_error)
-                    }
-                }
-
-                override fun afterTextChanged(p0: Editable?) {
-                    if (etJshir.text!!.length == 14) {
-                        jshirContainer.setHelperTextColor(
-                            ColorStateList.valueOf(
-                                resources.getColor(
-                                    R.color.helper_text_color
-                                )
-                            )
-                        )
-                    } else {
-                        jshirContainer.setHelperTextColor(
-                            ColorStateList.valueOf(
-                                resources.getColor(
-                                    R.color.main_red
-                                )
-                            )
-                        )
-                        jshirContainer.helperText = getString(R.string.str_jshir_error_length)
-                    }
-                }
-            })
         }
     }
 
@@ -196,7 +129,7 @@ class RegNameFragment : BaseFragment() {
                     }
 
                     btnContinue.isEnabled =
-                        etFio.text!!.isNotEmpty() && etJshir.text!!.length == 14 && etPassport.text!!.isNotEmpty()
+                        etFio.text!!.isNotEmpty() && etPassport.text!!.isNotEmpty()
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
@@ -209,7 +142,6 @@ class RegNameFragment : BaseFragment() {
     private fun closeKeyboards() {
         binding.apply {
             hideKeyboard(etFio)
-            hideKeyboard(etJshir)
             hideKeyboard(etPassport)
         }
     }

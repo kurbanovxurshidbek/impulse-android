@@ -6,16 +6,26 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import uz.impulse.impulse.R
 import uz.impulse.impulse.databinding.FragmentConfirmationBinding
 import uz.impulse.impulse.manager.PrefsManager
+import uz.impulse.impulse.utils.Extensions.toast
 import uz.impulse.impulse.utils.Logger
+import java.util.concurrent.TimeUnit
 
 class ConfirmationFragment : BaseFragment() {
+    private val TAG = ConfirmationFragment::class.java.simpleName
     private var _binding: FragmentConfirmationBinding? = null
 
     // This property is only valid between onCreateView and
@@ -24,6 +34,13 @@ class ConfirmationFragment : BaseFragment() {
 
     private var code: String = ""
     private var hasFilled = false
+
+    // firebase auth part below
+    private lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    private lateinit var mVerificationId: String
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var phoneNumber: String
+    private lateinit var forceResendingToken: PhoneAuthProvider.ForceResendingToken
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,19 +58,113 @@ class ConfirmationFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        firebaseAuth = FirebaseAuth.getInstance()
+        phoneNumber = PrefsManager.getInstance(requireContext())!!.getData("phoneNumber")!!
         codeConfirmation()
         changeTvColor()
         setPhoneNumber()
+
+        setAuth()
         binding.apply {
             mainConfirmation.setOnClickListener {
                 closeKeyboards()
             }
             btnContinue.setOnClickListener {
+
+            }
+        }
+    }
+
+    private fun setAuth() {
+        mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                signInWithPhoneAuthCredential(credential)
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                Log.d(TAG, "onVerificationFailed: ${e.message} ")
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                super.onCodeSent(verificationId, token)
+                Log.d(TAG, "onCodeSent: $verificationId")
+                mVerificationId = verificationId
+                forceResendingToken = token
+//                pd.dismiss()
+
+                Log.d(TAG, "Verification code sent...")
+            }
+        }
+
+        startPhoneVerification(phoneNumber)
+        binding.btnContinue.setOnClickListener {
+            verifyPhoneWithCode(mVerificationId, code)
+        }
+        binding.tvResend.setOnClickListener {
+            resendVerificationCode(phoneNumber, forceResendingToken)
+        }
+    }
+
+    private fun startPhoneVerification(phoneNumber: String) {
+//        pd.setMessage("Verifying phone number....")
+//        pd.show()
+
+        val options = PhoneAuthOptions.newBuilder(firebaseAuth)
+            .setPhoneNumber(phoneNumber)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(requireActivity())
+            .setCallbacks(mCallbacks)
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    private fun verifyPhoneWithCode(id: String, code: String) {
+//        pd.setMessage("Verifying code .........")
+//        pd.show()
+
+        val credential = PhoneAuthProvider.getCredential(id, code)
+        signInWithPhoneAuthCredential(credential)
+    }
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+//        pd.setMessage("Logging in...")
+//        pd.show()
+
+        firebaseAuth.signInWithCredential(credential)
+            .addOnSuccessListener {
                 vibrate()
                 PrefsManager.getInstance(requireContext())!!.setBoolean("isLoggedIn", true)
                 callSignUpActivity(requireActivity())
+
+//                pd.dismiss()
+                val phone = firebaseAuth.currentUser?.phoneNumber
+                Log.d(TAG, "Logged in as $phone")
             }
-        }
+            .addOnFailureListener {
+//                pd.dismiss()
+                toast("Tasdiqlash kodi xato")
+                Log.d(TAG, "Error ${it.message}")
+            }
+    }
+
+    private fun resendVerificationCode(
+        phoneNumber: String,
+        token: PhoneAuthProvider.ForceResendingToken
+    ) {
+//        pd.setMessage("Verifying phone number....")
+//        pd.show()
+
+        val options = PhoneAuthOptions.newBuilder(firebaseAuth)
+            .setPhoneNumber(phoneNumber)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(requireActivity())
+            .setForceResendingToken(token)
+            .setCallbacks(mCallbacks)
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
     private fun setPhoneNumber() {

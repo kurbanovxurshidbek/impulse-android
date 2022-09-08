@@ -34,7 +34,7 @@ class HomeItemAdapter(private var fragment: HomeFragment, private var items: Arr
                 tvText.text = item.tvText
                 Glide.with(fragment).load(item.ivRightIcon).into(ivRightIcon)
                 llHome.setOnClickListener {
-                    fragment.vibrate()
+//                    fragment.vibrate()
                     fragment.navigateToFirstAidFragment()
                 }
             }

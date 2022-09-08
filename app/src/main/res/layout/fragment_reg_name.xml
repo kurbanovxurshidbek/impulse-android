@@ -72,33 +72,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/jshirContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/str_jshir"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:counterEnabled="true"
-                app:counterMaxLength="14"
-                app:endIconDrawable="@mipmap/ic_info"
-                app:endIconMode="custom"
-                app:helperText="@string/str_jshir_helper"
-                app:helperTextEnabled="true"
-                app:helperTextTextColor="@color/helper_text_color">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etJshir"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_et_registration"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:maxLength="14" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passportContainer"
